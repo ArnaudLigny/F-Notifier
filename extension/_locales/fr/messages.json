@@ -1,0 +1,20 @@
+{
+    "extName": {
+        "message": "Notificateur Facebook"
+    },
+    "extDescription": {
+        "message": "Affiche le nombre de notifications Facebook non lus."
+    },
+    "browserActionDefaultTitle": {
+        "message": "$count$ notification(s) Facebook",
+        "placeholders": {
+            "count": {
+                "content": "$1",
+                "example": "7"
+            }
+        }
+    },
+    "browserActionErrorTitle": {
+        "message": "Vous devez être connecté à votre compte Facebook"
+    }
+}
