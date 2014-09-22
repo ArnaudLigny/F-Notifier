@@ -69,19 +69,19 @@
     });
   }
 
-  function isFacebookNotificationsUrl(url) {
-    return url.indexOf(NOTIFICATIONS_URL) == 0;
+  function isFacebookHomeUrl(url) {
+    return url.indexOf(HOME_URL) == 0;
   }
 
-  function openFacebookNotificationsInTab() {
+  function openFacebookHomeInTab() {
     chrome.tabs.getAllInWindow(undefined, function(tabs) {
       for (var i = 0, tab; tab = tabs[i]; i++) {
-        if (tab.url && isFacebookNotificationsUrl(tab.url)) {
+        if (tab.url && isFacebookHomeUrl(tab.url)) {
           chrome.tabs.update(tab.id, {selected: true});
           return;
         }
       }
-      chrome.tabs.create({url: NOTIFICATIONS_URL});
+      chrome.tabs.create({url: HOME_URL});
     });
   }
 
@@ -94,7 +94,7 @@
   // browser action
   chrome.browserAction.onClicked.addListener(function () {
     chrome.runtime.sendMessage({do: 'updatebadge'});
-    openFacebookNotificationsInTab()
+    openFacebookHomeInTab()
   });
 
   // check whether new version is installed
