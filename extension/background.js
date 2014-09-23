@@ -46,7 +46,7 @@
   };
 
   // badge renderer
-  function render(badge, color, title) {
+  function render(badge, color, title, icon) {
     chrome.browserAction.setBadgeText({
       text: badge
     });
@@ -56,15 +56,38 @@
     chrome.browserAction.setTitle({
       title: title
     });
+    if (icon != null) {
+      chrome.browserAction.setIcon({
+        path: icon
+      })
+    }
   }
 
   // update badge
   function updateBadge() {
     NotificationsCount(function (count) {
       if (count !== false) {
-        render((count !== '0' ? count : ''), [208, 0, 24, 255], chrome.i18n.getMessage('browserActionDefaultTitle', count));
+        if (count == '0') {
+          render(
+            '',
+            [208, 0, 24, 255],
+            chrome.i18n.getMessage('browserActionDefaultTitle', count)
+          );
+        }
+        else {
+          render(
+            count,
+            [208, 0, 24, 255],
+            chrome.i18n.getMessage('browserActionDefaultTitle', count),
+            'icon-19.png'
+          );
+        }
       } else {
-        render('?', [190, 190, 190, 230], chrome.i18n.getMessage('browserActionErrorTitle'));
+        render(
+          '?',
+          [190, 190, 190, 230],
+          chrome.i18n.getMessage('browserActionErrorTitle')
+        );
       }
     });
   }
