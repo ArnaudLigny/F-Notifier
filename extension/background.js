@@ -71,7 +71,8 @@
           render(
             '',
             [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count)
+            chrome.i18n.getMessage('browserActionDefaultTitle', count),
+            'icon-w-19.png'
           );
         }
         else {
