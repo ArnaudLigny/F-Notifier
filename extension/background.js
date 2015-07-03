@@ -105,7 +105,11 @@
           return;
         }
       }
-      chrome.tabs.create({url: HOME_URL});
+      if (localStorage.getItem('landingPage') === null || localStorage.getItem('landingPage') === 'notifications') {
+        chrome.tabs.create({url: NOTIFICATIONS_URL});
+      } else {
+        chrome.tabs.create({url: HOME_URL});
+      }
     });
   }
 
