@@ -1,7 +1,9 @@
 (function () {
+  "use strict";
+
   var HOME_URL = 'https://www.facebook.com/';
   var NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
-  
+
   // XHR helper function
   var xhr = function () {
     var xhr = new XMLHttpRequest();

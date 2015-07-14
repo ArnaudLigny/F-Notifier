@@ -34,7 +34,7 @@
     function loadOptions() {
       // page
       if (localStorage.getItem('landingPage') === null) {
-        inputLandingPageHome.checked = true;
+        inputLandingPageNotifications.checked = true;
       } else {
         if (localStorage.getItem('landingPage') === 'home') {
           inputLandingPageHome.checked = true;
@@ -45,14 +45,7 @@
     }
     loadOptions();
 
-    // Save
-    document.getElementById('landingPageHome').addEventListener('change', function () {
-      saveOptions();
-    });
-    document.getElementById('landingPageNotifications').addEventListener('change', function () {
-      saveOptions();
-    });
-
+    // Save options
     function saveOptions() {
       if (inputLandingPageHome.checked) {
         localStorage.setItem('landingPage', 'home');
@@ -67,5 +60,11 @@
         successMessage.classList.remove('visible');
       }, 2000);
     }
+    document.getElementById('landingPageHome').addEventListener('change', function () {
+      saveOptions();
+    });
+    document.getElementById('landingPageNotifications').addEventListener('change', function () {
+      saveOptions();
+    });
   });
 })();
