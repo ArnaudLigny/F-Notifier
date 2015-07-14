@@ -16,5 +16,23 @@
     },
     "browserActionErrorTitle": {
         "message": "Vous devez être connecté à votre compte Facebook"
+    },
+    "optionsHeader": {
+        "message": "Général"
+    },
+    "optionsSaved": {
+        "message": "Options enregistrées"
+    },
+    "optionsSectionToolbarIconHeader": {
+        "message": "Icône de la barre"
+    },
+    "optionsSectionToolbarIcon": {
+        "message": "Définir la page de destination par défaut au clic sur l'icône de la barre d'outils."
+    },
+    "optionsRadioHome": {
+        "message": "Accueil"
+    },
+    "optionsRadioNotifications": {
+        "message": "Notifications"
     }
 }

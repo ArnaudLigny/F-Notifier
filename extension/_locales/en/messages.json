@@ -16,5 +16,23 @@
     },
     "browserActionErrorTitle": {
         "message": "You should be logged into your Facebook account"
+    },
+    "optionsHeader": {
+        "message": "General"
+    },
+    "optionsSaved": {
+        "message": "Options saved"
+    },
+    "optionsSectionToolbarIconHeader": {
+        "message": "Toolbar icon"
+    },
+    "optionsSectionToolbarIcon": {
+        "message": "Define the default landing page when clicking on the toolbar icon."
+    },
+    "optionsRadioHome": {
+        "message": "Home"
+    },
+    "optionsRadioNotifications": {
+        "message": "Notifications"
     }
 }
