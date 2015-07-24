@@ -1,4 +1,4 @@
-package/*
-*.zip
-*.pem
-*.crx
+build
+dist
+certs
+node_modules

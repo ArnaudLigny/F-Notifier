@@ -1,3 +1,3 @@
-[submodule "extension/lib/chrome-bootstrap"]
-	path = extension/lib/chrome-bootstrap
+[submodule "src/vendor/chrome-bootstrap"]
+	path = src/vendor/chrome-bootstrap
 	url = https://github.com/better-history/chrome-bootstrap.git
