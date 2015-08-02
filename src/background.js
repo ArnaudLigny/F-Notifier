@@ -116,9 +116,13 @@
   }
 
   // Chrome alarm
-  chrome.alarms.create({periodInMinutes: 1});
-  chrome.alarms.onAlarm.addListener(function () {
-    chrome.runtime.sendMessage({do: 'updatebadge'});
+  chrome.alarms.create('badge', {periodInMinutes: 0.1});
+  chrome.alarms.onAlarm.addListener(function (alarm) {
+    switch (alarm.name) {
+      case 'badge':
+        chrome.runtime.sendMessage({do: 'updatebadge'});
+        break;
+    }
   });
 
   // browser action
