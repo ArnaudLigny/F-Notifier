@@ -3,7 +3,7 @@
 
   var HOME_URL = 'https://www.facebook.com/';
   var NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
-  var soundBleep = 'knock_brush.mp3';
+  var soundBleep = 'notification.mp3';
 
   // XHR helper function
   var xhr = function () {
