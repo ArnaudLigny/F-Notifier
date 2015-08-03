@@ -1,14 +1,17 @@
 {
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "background": {
         "persistent": false,
         "scripts": [
             "background.js"
         ]
     },
-    "options_page": "options.html",
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": false
+      },
     "permissions": [
         "alarms",
         "tabs",
