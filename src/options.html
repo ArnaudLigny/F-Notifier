@@ -1,68 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title data-message="extName">Facebook Notifier</title>
-    <link rel="stylesheet" href="vendor/chrome-bootstrap/chrome-bootstrap.min.css">
-    <script src="vendor/zepto.min.js" type="text/javascript"></script>
-    <style>
-      .chrome-bootstrap .frame .view {
-        -webkit-margin-start: 180px
-      }
-      .chrome-bootstrap .frame .navigation {
-        width: 165px
-      }
-      input[type='text'] {
-        width: 350px;
-      }
-      #success_message {
-        margin-top: 10px;
-        padding: 5px 10px;
-        opacity: 0;
-        transition: opacity 0.5s ease-out;
-      }
-      #success_message.visible {
-        opacity: 1;
-      }
-    </style>
-    <script src="options.js"></script>
-  </head>
-  <body class="chrome-bootstrap">
-    <div class="frame">
-      <div class="navigation">
-        <h1><a href="#" data-message="extName">Facebook Notifier</a></h1>
-        <ul class="menu">
-          <li class="selected"><a href="#general" data-message="optionsHeader">General</a></li>
-        </ul>
-        <div id="success_message" class="alert" data-message="optionsSaved">Options saved</div>
-      </div>
-      <div class="mainview view">
-        <div id="general" class="selected">
-          <header>
-            <h1 data-message="optionsHeader">General</h1>
-          </header>
-          <div class="content">
-            <section>
-              <h3 data-message="optionsSectionToolbarIconHeader">Toolbar icon</h3>
-              <p data-message="optionsSectionToolbarIcon">Define the default landing page when clicking on the toolbar icon.</p>
-              <div class="radio">
-                <input id="landingPageHome" name="landingPage" type="radio" value="home">&nbsp;<label for="landingPageHome" data-message="optionsRadioHome">Home</label><br />
-              </div>
-              <div class="radio">
-                <input id="landingPageNotifications" name="landingPage" type="radio" value="notifications">&nbsp;<label for="landingPageNotifications" data-message="optionsRadioNotifications">Notifications</label>
-              </div>
-            </section>
-            <section>
-              <h3 data-message="optionsSectionSoundHeader">Sound</h3>
-              <p data-message="optionsSectionSound">Play sound when you got a new notification.</p>
-              <div class="checkbox">
-                <input type="checkbox" id="isSound">
-                <label for="isSound" data-message="optionsCheckboxSound">Play sound</label>
-              </div>
-            </section>
-          </div><!-- /content -->
-        </div><!-- /general -->
-      </div>
-    </div>
-  </body>
+<head>
+  <title>My Test Extension Options</title>
+  <style>
+    body: { padding: 10px; }
+  </style>
+</head>
+<body>
+  <h3 data-message="optionsSectionToolbarIconHeader">Toolbar icon</h3>
+  <p data-message="optionsSectionToolbarIcon">Define the default landing page when clicking on the toolbar icon.</p>
+  <input id="landingPageHome" name="landingPage" type="radio" value="home">&nbsp;<label for="landingPageHome" data-message="optionsRadioHome">Home</label><br />
+  <input id="landingPageNotifications" name="landingPage" type="radio" value="notifications">&nbsp;<label for="landingPageNotifications" data-message="optionsRadioNotifications">Notifications</label>
+  <h3 data-message="optionsSectionSoundHeader">Sound</h3>
+  <p data-message="optionsSectionSound">Play sound when you got a new notification.</p>
+  <input type="checkbox" id="isSound">
+  <label for="isSound" data-message="optionsCheckboxSound">Play sound</label>
+  <script src="options.js"></script>
+</body>
 </html>
