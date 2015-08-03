@@ -34,5 +34,14 @@
     },
     "optionsRadioNotifications": {
         "message": "Notifications"
+    },
+    "optionsSectionSoundHeader": {
+        "message": "Son"
+    },
+    "optionsSectionSound": {
+        "message": "Émettre un son lorsque vous avez une nouvelle notification."
+    },
+    "optionsCheckboxSound": {
+        "message": "Émettre un son"
     }
 }

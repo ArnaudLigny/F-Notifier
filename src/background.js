@@ -3,6 +3,7 @@
 
   var HOME_URL = 'https://www.facebook.com/';
   var NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
+  var soundBleep = 'knock_brush.mp3';
 
   // XHR helper function
   var xhr = function () {
@@ -84,7 +85,14 @@
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
             'icon-19.png'
           );
+          // play sound?
+          if (localStorage.getItem('isSound') == 'true'
+            && (count > parseInt(localStorage.getItem('count')) || localStorage.getItem('count') === null)
+          ) {
+            playSound();
+          }
         }
+        localStorage.setItem('count', count);
       } else {
         render(
           '?',
@@ -113,6 +121,12 @@
         chrome.tabs.create({url: HOME_URL});
       }
     });
+  }
+
+  function playSound() {
+    var notifAudio = new Audio();
+    notifAudio.src = soundBleep;
+    notifAudio.play();
   }
 
   // Chrome alarm
