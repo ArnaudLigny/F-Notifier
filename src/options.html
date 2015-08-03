@@ -7,14 +7,34 @@
   </style>
 </head>
 <body>
-  <h3 data-message="optionsSectionToolbarIconHeader">Toolbar icon</h3>
-  <p data-message="optionsSectionToolbarIcon">Define the default landing page when clicking on the toolbar icon.</p>
-  <input id="landingPageHome" name="landingPage" type="radio" value="home">&nbsp;<label for="landingPageHome" data-message="optionsRadioHome">Home</label><br />
-  <input id="landingPageNotifications" name="landingPage" type="radio" value="notifications">&nbsp;<label for="landingPageNotifications" data-message="optionsRadioNotifications">Notifications</label>
-  <h3 data-message="optionsSectionSoundHeader">Sound</h3>
-  <p data-message="optionsSectionSound">Play sound when you got a new notification.</p>
-  <input type="checkbox" id="isSound">
-  <label for="isSound" data-message="optionsCheckboxSound">Play sound</label>
+  <section>
+    <h3 data-message="optionsSectionToolbarIconHeader">Toolbar icon</h3>
+    <p data-message="optionsSectionToolbarIcon">Define the default landing page when clicking on the toolbar icon.</p>
+    <div>
+      <div class="radio">
+        <label>
+          <input id="landingPageHome" name="landingPage" type="radio" value="home">
+          <span data-message="optionsRadioHome">Home</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input id="landingPageNotifications" name="landingPage" type="radio" value="notifications">
+          <span data-message="optionsRadioNotifications">Notifications</span>
+        </label>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h3 data-message="optionsSectionSoundHeader">Sound</h3>
+    <p data-message="optionsSectionSound">Play sound when you got a new notification.</p>
+    <div>
+      <label>
+        <input type="checkbox" id="isSound">
+        <span data-message="optionsCheckboxSound">Play sound</span>
+      </label>
+    </div>
+  </section>
   <script src="options.js"></script>
 </body>
 </html>
