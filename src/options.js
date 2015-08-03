@@ -27,6 +27,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var inputLandingPageHome = document.getElementById('landingPageHome');
     var inputLandingPageNotifications = document.getElementById('landingPageNotifications');
+    var inputIsSound = document.getElementById('isSound');
     var successMessage = document.getElementById('success_message');
     var successTimeout = null;
 
@@ -53,6 +54,10 @@
           inputLandingPageNotifications.checked = true;
         }
       }
+      // sound
+      if (localStorage.getItem('isSound') === null) {
+        inputIsSound.checked = true;
+      }
     }
     loadOptions();
 
@@ -63,6 +68,7 @@
       } else {
         localStorage.setItem('landingPage', 'notifications');
       }
+      localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
       // success message
       clearTimeout(successTimeout);
@@ -75,6 +81,9 @@
       saveOptions();
     });
     document.getElementById('landingPageNotifications').addEventListener('change', function () {
+      saveOptions();
+    });
+    document.getElementById('isSound').addEventListener('change', function () {
       saveOptions();
     });
   });

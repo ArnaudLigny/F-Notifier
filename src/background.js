@@ -85,8 +85,14 @@
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
             'icon-19.png'
           );
-          playSound();
+          // play sound?
+          if (localStorage.getItem('isSound') == 'true'
+            && (count > parseInt(localStorage.getItem('count')) || localStorage.getItem('count') === null)
+          ) {
+            playSound();
+          }
         }
+        localStorage.setItem('count', count);
       } else {
         render(
           '?',
