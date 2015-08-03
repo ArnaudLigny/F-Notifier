@@ -17,12 +17,6 @@
     "browserActionErrorTitle": {
         "message": "Vous devez être connecté à votre compte Facebook"
     },
-    "optionsHeader": {
-        "message": "Général"
-    },
-    "optionsSaved": {
-        "message": "Options enregistrées"
-    },
     "optionsSectionToolbarIconHeader": {
         "message": "Icône de la barre"
     },

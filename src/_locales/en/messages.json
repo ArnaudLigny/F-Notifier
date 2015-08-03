@@ -17,12 +17,6 @@
     "browserActionErrorTitle": {
         "message": "You should be logged into your Facebook account"
     },
-    "optionsHeader": {
-        "message": "General"
-    },
-    "optionsSaved": {
-        "message": "Options saved"
-    },
     "optionsSectionToolbarIconHeader": {
         "message": "Toolbar icon"
     },
