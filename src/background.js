@@ -41,8 +41,7 @@
         } else {
           callback('0');
         }
-      }
-      else {
+      } else {
         callback(false);
       }
     });
@@ -77,8 +76,7 @@
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
             'icon-w-19.png'
           );
-        }
-        else {
+        } else {
           render(
             count,
             [208, 0, 24, 255],
@@ -130,7 +128,7 @@
   }
 
   // Chrome alarm
-  chrome.alarms.create('badge', {periodInMinutes: 0.1});
+  chrome.alarms.create('badge', {periodInMinutes: 1});
   chrome.alarms.onAlarm.addListener(function (alarm) {
     switch (alarm.name) {
       case 'badge':

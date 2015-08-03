@@ -56,7 +56,11 @@
       }
       // sound
       if (localStorage.getItem('isSound') === null) {
-        inputIsSound.checked = true;
+        inputIsSound.checked = false;
+      } else {
+        if (localStorage.getItem('isSound') === 'true') {
+          inputIsSound.checked = true;
+        }
       }
     }
     loadOptions();
