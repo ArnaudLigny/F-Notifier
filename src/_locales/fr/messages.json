@@ -17,25 +17,25 @@
     "browserActionErrorTitle": {
         "message": "Vous devez être connecté à votre compte Facebook"
     },
-    "optionsSectionToolbarIconHeader": {
-        "message": "Icône de la barre"
+    "optionsSectionToolbarIconColor": {
+        "message": "Quelle icone ?"
     },
-    "optionsSectionToolbarIcon": {
-        "message": "Définir la page de destination par défaut au clic sur l'icône de la barre d'outils."
+    "optionsSectionToolbarIconAction": {
+        "message": "Quelle page ouvrir ?"
     },
-    "optionsRadioHome": {
+    "optionsSelectIfNotif": {
+        "message": "Si vous avez des notifications :"
+    },
+    "optionsSelectIfNoNotif": {
+        "message": "Si vous n'avez pas de notifications :"
+    },
+    "optionsSelectOptionHome": {
         "message": "Accueil"
     },
-    "optionsRadioNotifications": {
+    "optionsSelectOptionNotifications": {
         "message": "Notifications"
     },
-    "optionsSectionSoundHeader": {
-        "message": "Son"
-    },
-    "optionsSectionSound": {
-        "message": "Émettre un son lorsque vous avez une nouvelle notification."
-    },
     "optionsCheckboxSound": {
-        "message": "Émettre un son"
+        "message": "Émettre un son lorsque vous avez une nouvelle notification"
     }
 }

@@ -113,10 +113,18 @@
           return;
         }
       }
-      if (localStorage.getItem('landingPage') === null || localStorage.getItem('landingPage') === 'notifications') {
-        chrome.tabs.create({url: NOTIFICATIONS_URL});
+      if (parseInt(localStorage.getItem('count')) > 0) {
+        if (localStorage.getItem('landingPageIfNotif') === null || localStorage.getItem('landingPageIfNotif') === 'notifications') {
+          chrome.tabs.create({url: NOTIFICATIONS_URL});
+        } else {
+          chrome.tabs.create({url: HOME_URL});
+        }
       } else {
-        chrome.tabs.create({url: HOME_URL});
+        if (localStorage.getItem('landingPage') === null || localStorage.getItem('landingPage') === 'home') {
+          chrome.tabs.create({url: HOME_URL});
+        } else {
+          chrome.tabs.create({url: NOTIFICATIONS_URL});
+        }
       }
     });
   }

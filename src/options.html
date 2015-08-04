@@ -4,31 +4,58 @@
   <title>My Test Extension Options</title>
   <style>
     body: { padding: 10px; }
+    li { margin: 0.65em 0; }
+    /*
+    ul.icon li {
+      display: inline;
+      text-align: center;
+      padding: 2px ;
+      margin: 0;
+      width: 19%;
+    }
+    ul.icon { -webkit-padding-start: 0; }
+    */
   </style>
 </head>
 <body>
   <section>
-    <h3 data-message="optionsSectionToolbarIconHeader">Toolbar icon</h3>
-    <p data-message="optionsSectionToolbarIcon">Define the default landing page when clicking on the toolbar icon.</p>
-    <div>
-      <div class="radio">
+    <!--
+    <div data-message="optionsSectionToolbarIconColor">What icon?</div>
+    <ul class="icon">
+      <li>
         <label>
-          <input id="landingPageHome" name="landingPage" type="radio" value="home">
-          <span data-message="optionsRadioHome">Home</span>
+          <input id="iconB" type="radio" name="icon" value="icon-19.png">
+          <span><img src="icon-19.png" data-message="optionsRadioIconB" /></span>
         </label>
-      </div>
-      <div class="radio">
+      </li>
+      <li>
         <label>
-          <input id="landingPageNotifications" name="landingPage" type="radio" value="notifications">
-          <span data-message="optionsRadioNotifications">Notifications</span>
+          <input id="iconW" type="radio" name="icon" value="icon-w-19.png">
+          <span><img src="icon-w-19.png" data-message="optionsRadioIconW" style="background-color:#D1D0CE;" /></span>
         </label>
-      </div>
-    </div>
+      </li>
+    </ul>
+    -->
+    <div data-message="optionsSectionToolbarIconAction">What page to open?</div>
+    <ul>
+      <li><div class="select">
+        <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
+        <select id="landingPage" name="landingPage">
+          <option value="home" data-message="optionsSelectOptionHome">Home</option>
+          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+        </select>
+      </div></li>
+      <li><div class="select">
+        <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
+        <select id="landingPageIfNotif" name="landingPageIfNotif">
+          <option value="home" data-message="optionsSelectOptionHome">Home</option>
+          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+        </select>
+      </div></li>
+    </ul>
   </section>
   <section>
-    <h3 data-message="optionsSectionSoundHeader">Sound</h3>
-    <p data-message="optionsSectionSound">Play sound when you got a new notification.</p>
-    <div>
+    <div class="checkbox">
       <label>
         <input type="checkbox" id="isSound">
         <span data-message="optionsCheckboxSound">Play sound</span>

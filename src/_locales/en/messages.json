@@ -17,25 +17,25 @@
     "browserActionErrorTitle": {
         "message": "You should be logged into your Facebook account"
     },
-    "optionsSectionToolbarIconHeader": {
-        "message": "Toolbar icon"
+    "optionsSectionToolbarIconColor": {
+        "message": "What icon?"
     },
-    "optionsSectionToolbarIcon": {
-        "message": "Define the default landing page when clicking on the toolbar icon."
+    "optionsSectionToolbarIconAction": {
+        "message": "What page to open?"
     },
-    "optionsRadioHome": {
+    "optionsSelectIfNotif": {
+        "message": "If you got notifications:"
+    },
+    "optionsSelectIfNoNotif": {
+        "message": "If you do not have notifications:"
+    },
+    "optionsSelectOptionHome": {
         "message": "Home"
     },
-    "optionsRadioNotifications": {
+    "optionsSelectOptionNotifications": {
         "message": "Notifications"
     },
-    "optionsSectionSoundHeader": {
-        "message": "Sound"
-    },
-    "optionsSectionSound": {
-        "message": "Play sound when you got a new notification."
-    },
     "optionsCheckboxSound": {
-        "message": "Play sound"
+        "message": "Play sound when you got a new notification"
     }
 }

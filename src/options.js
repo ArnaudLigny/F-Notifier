@@ -2,8 +2,8 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
-    var inputLandingPageHome = document.getElementById('landingPageHome');
-    var inputLandingPageNotifications = document.getElementById('landingPageNotifications');
+    var inputLandingPage = document.getElementById('landingPage');
+    var inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
     var inputIsSound = document.getElementById('isSound');
 
     // Apply translations
@@ -21,13 +21,14 @@
     function loadOptions() {
       // page
       if (localStorage.getItem('landingPage') === null) {
-        inputLandingPageNotifications.checked = true;
+        inputLandingPage.value = 'home';
       } else {
-        if (localStorage.getItem('landingPage') === 'home') {
-          inputLandingPageHome.checked = true;
-        } else if (localStorage.getItem('landingPage') === 'notifications') {
-          inputLandingPageNotifications.checked = true;
-        }
+        inputLandingPage.value = localStorage.getItem('landingPage');
+      }
+      if (localStorage.getItem('landingPageIfNotif') === null) {
+        inputLandingPageIfNotif.value = 'notifications';
+      } else {
+        inputLandingPageIfNotif.value = localStorage.getItem('landingPageIfNotif');
       }
       // sound
       if (localStorage.getItem('isSound') === null) {
@@ -42,18 +43,15 @@
 
     // Save options
     function saveOptions() {
-      if (inputLandingPageHome.checked) {
-        localStorage.setItem('landingPage', 'home');
-      } else {
-        localStorage.setItem('landingPage', 'notifications');
-      }
+      localStorage.setItem('landingPage', inputLandingPage.value);
+      localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
       localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
-    document.getElementById('landingPageHome').addEventListener('change', function () {
+    document.getElementById('landingPage').addEventListener('change', function () {
       saveOptions();
     });
-    document.getElementById('landingPageNotifications').addEventListener('change', function () {
+    document.getElementById('landingPageIfNotif').addEventListener('change', function () {
       saveOptions();
     });
     document.getElementById('isSound').addEventListener('change', function () {
