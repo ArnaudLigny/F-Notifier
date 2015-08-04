@@ -2,6 +2,8 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
+    var inputIconB = document.getElementById('iconB');
+    var inputIconW = document.getElementById('iconW');
     var inputLandingPage = document.getElementById('landingPage');
     var inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
     var inputIsSound = document.getElementById('isSound');
@@ -19,6 +21,16 @@
 
     // Laod options
     function loadOptions() {
+      // icon
+      if (localStorage.getItem('iconColor') === null) {
+        inputIconB.checked = true;
+      } else {
+        if (localStorage.getItem('iconColor') == 'B') {
+          inputIconB.checked = true;
+        } else {
+          inputIconW.checked = true;
+        }
+      }
       // page
       if (localStorage.getItem('landingPage') === null) {
         inputLandingPage.value = 'home';
@@ -43,11 +55,22 @@
 
     // Save options
     function saveOptions() {
+      if (inputIconB.checked) {
+        localStorage.setItem('iconColor', 'icon-19.png');
+      } else {
+        localStorage.setItem('iconColor', 'icon-w-19.png');
+      }
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
       localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
+    document.getElementById('iconB').addEventListener('change', function () {
+      saveOptions();
+    });
+    document.getElementById('iconW').addEventListener('change', function () {
+      saveOptions();
+    });
     document.getElementById('landingPage').addEventListener('change', function () {
       saveOptions();
     });

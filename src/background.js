@@ -74,14 +74,14 @@
             '',
             [208, 0, 24, 255],
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
-            'icon-w-19.png'
+            localStorage.getItem('iconColor')
           );
         } else {
           render(
             count,
             [208, 0, 24, 255],
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
-            'icon-19.png'
+            localStorage.getItem('iconColor')
           );
           // play sound?
           if (localStorage.getItem('isSound') == 'true'
