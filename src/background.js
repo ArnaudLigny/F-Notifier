@@ -1,28 +1,19 @@
 (function () {
   "use strict";
 
+  /**
+   * Config
+   */
+
   var HOME_URL = 'https://www.facebook.com/';
   var NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
   var soundBleep = 'notification.mp3';
 
-  // XHR helper function
-  var xhr = function () {
-    var xhr = new XMLHttpRequest();
-    return function(method, url, callback) {
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status !== 200) {
-            callback(false);
-          }
-          callback(xhr.responseText);
-        }
-      };
-      xhr.open(method, url);
-      xhr.send();
-    };
-  }();
+  /**
+   * Main functions
+   */
 
-  // main function
+  // Notifications count function
   window.NotificationsCount = function (callback) {
     var tmpDom = document.createElement('div');
 
@@ -46,24 +37,6 @@
       }
     });
   };
-
-  // badge renderer
-  function render(badge, color, title, icon) {
-    chrome.browserAction.setBadgeText({
-      text: badge
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color: color
-    });
-    chrome.browserAction.setTitle({
-      title: title
-    });
-    if (icon != null) {
-      chrome.browserAction.setIcon({
-        path: icon
-      })
-    }
-  }
 
   // update badge
   function updateBadge() {
@@ -101,6 +74,45 @@
     });
   }
 
+  // badge renderer
+  function render(badge, color, title, icon) {
+    chrome.browserAction.setBadgeText({
+      text: badge
+    });
+    chrome.browserAction.setBadgeBackgroundColor({
+      color: color
+    });
+    chrome.browserAction.setTitle({
+      title: title
+    });
+    if (icon != null) {
+      chrome.browserAction.setIcon({
+        path: icon
+      })
+    }
+  }
+
+  /**
+   * Helpers
+   */
+
+  // XHR helper function
+  var xhr = function () {
+    var xhr = new XMLHttpRequest();
+    return function(method, url, callback) {
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status !== 200) {
+            callback(false);
+          }
+          callback(xhr.responseText);
+        }
+      };
+      xhr.open(method, url);
+      xhr.send();
+    };
+  }();
+
   function isFacebookHomeUrl(url) {
     return url.indexOf(HOME_URL) == 0;
   }
@@ -134,6 +146,10 @@
     notifAudio.src = soundBleep;
     notifAudio.play();
   }
+
+  /**
+   * Events
+   */
 
   // Chrome alarm
   chrome.alarms.create('badge', {periodInMinutes: 1});
