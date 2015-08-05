@@ -25,7 +25,7 @@
       if (localStorage.getItem('iconColor') === null) {
         inputIconB.checked = true;
       } else {
-        if (localStorage.getItem('iconColor') == 'B') {
+        if (localStorage.getItem('iconColor') == 'icon-19.png') {
           inputIconB.checked = true;
         } else {
           inputIconW.checked = true;
