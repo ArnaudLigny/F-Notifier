@@ -37,5 +37,8 @@
     },
     "optionsCheckboxSound": {
         "message": "Émettre un son lorsque vous avez une nouvelle notification"
+    },
+    "optionsAbout": {
+        "message": "À propos"
     }
 }

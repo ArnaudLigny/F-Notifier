@@ -3,8 +3,11 @@
 <head>
   <title>My Test Extension Options</title>
   <style>
-    body: { padding: 10px; }
+    ul {
+      -webkit-padding-start: 20px;
+    }
     li { margin: 0.65em 0; }
+    ul.icon { -webkit-padding-start: 0; }
     ul.icon li {
       display: inline;
       text-align: center;
@@ -12,12 +15,29 @@
       margin: 0;
       width: 19%;
     }
-    ul.icon { -webkit-padding-start: 0; }
+    hr {
+      background-color: #ddd;
+      border: 0;
+      height: 1px;
+    }
+    fieldset {
+      border: solid 1px #ccc;
+      border-radius: 3px;
+      padding: 4px 8px;
+      margin-bottom: 5px;
+    }
+    input[type="radio"] {
+      vertical-align: top;
+      margin-top: 3px;
+    }
+    div.footer {
+      text-align: right;
+    }
   </style>
 </head>
 <body>
-  <section>
-    <div data-message="optionsSectionToolbarIconColor">What icon?</div>
+  <fieldset>
+    <legend data-message="optionsSectionToolbarIconColor">What icon?</legend>
     <ul class="icon">
       <li>
         <label>
@@ -32,7 +52,9 @@
         </label>
       </li>
     </ul>
-    <div data-message="optionsSectionToolbarIconAction">What page to open?</div>
+  </fieldset>
+  <fieldset>
+    <legend data-message="optionsSectionToolbarIconAction">What page to open?</legend>
     <ul>
       <li><div class="select">
         <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
@@ -49,15 +71,18 @@
         </select>
       </div></li>
     </ul>
-  </section>
-  <section>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" id="isSound">
-        <span data-message="optionsCheckboxSound">Play sound</span>
-      </label>
-    </div>
-  </section>
+  </fieldset>
+  <fieldset>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="isSound">
+      <span data-message="optionsCheckboxSound">Play sound</span>
+    </label>
+  </div>
+  </fieldset>
+  <div class="footer">
+    <a target="_blank" href="http://narno.org/Facebook-Notifier/" data-message="optionsAbout">About</a>
+  </div>
   <script src="options.js"></script>
 </body>
 </html>

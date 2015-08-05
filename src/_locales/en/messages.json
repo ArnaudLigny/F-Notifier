@@ -37,5 +37,8 @@
     },
     "optionsCheckboxSound": {
         "message": "Play sound when you got a new notification"
+    },
+    "optionsAbout": {
+        "message": "About"
     }
 }
