@@ -168,9 +168,11 @@
   });
 
   // check whether new version is installed
-  chrome.runtime.onInstalled.addListener(function () {
-    chrome.runtime.sendMessage({do: 'updatebadge'});
-    chrome.runtime.openOptionsPage();
+  chrome.runtime.onInstalled.addListener(function(details) {
+    if (details.reason == 'install' || details.reason == 'update') {
+      chrome.runtime.sendMessage({do: 'updatebadge'});
+      chrome.runtime.openOptionsPage();
+    }
   });
 
   // on message update badge
