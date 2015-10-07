@@ -5,7 +5,7 @@ Facebook Notifier is a Google Chrome extension that displays your [Facebook](htt
 
 ![Facebook Notifier screenshot](https://raw.github.com/Narno/Facebook-Notifier/master/doc/screenshot_600x360.png "Facebook Notifier screenshot")
 
-![Facebook Notifier options screenshot](https://raw.github.com/Narno/Facebook-Notifier/master/doc/screenshot_options_816x650.png "Facebook Notifier options screenshot")
+![Facebook Notifier options screenshot](https://raw.github.com/Narno/Facebook-Notifier/master/doc/screenshot_options_802x634.png "Facebook Notifier options screenshot")
 
 Installation
 ------------
