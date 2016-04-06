@@ -152,19 +152,13 @@
    */
 
   // Chrome alarm
-  chrome.alarms.create('badge', {periodInMinutes: 1});
-  chrome.alarms.onAlarm.addListener(function (alarm) {
-    switch (alarm.name) {
-      case 'badge':
-        chrome.runtime.sendMessage({do: 'updatebadge'});
-        break;
-    }
-  });
+  chrome.alarms.create({delayInMinutes: 1, periodInMinutes: 1});
+  chrome.alarms.onAlarm.addListener(updateBadge);
 
   // browser action
   chrome.browserAction.onClicked.addListener(function () {
-    chrome.runtime.sendMessage({do: 'updatebadge'});
-    openFacebookHomeInTab()
+    updateBadge();
+    openFacebookHomeInTab();
   });
 
   // check whether new version is installed
@@ -173,7 +167,7 @@
       case 'install':
         chrome.runtime.openOptionsPage();
       default:
-        chrome.runtime.sendMessage({do: 'updatebadge'});
+        updateBadge();
     }
   });
 
