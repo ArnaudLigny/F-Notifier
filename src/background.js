@@ -121,7 +121,7 @@
     chrome.tabs.getAllInWindow(undefined, function(tabs) {
       for (var i = 0, tab; tab = tabs[i]; i++) {
         if (tab.url && isFacebookHomeUrl(tab.url)) {
-          chrome.tabs.update(tab.id, {selected: true});
+          chrome.tabs.update(tab.id, {highlighted: true});
           return;
         }
       }
