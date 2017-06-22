@@ -15,7 +15,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "node_modules/.bin/gulp",
-    "release": "npm run build && node_modules/.bin/webstore upload --source=build --auto-publish"
+    "release": "cd build && webstore upload --auto-publish"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.1.1",
