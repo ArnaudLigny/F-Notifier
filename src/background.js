@@ -57,8 +57,7 @@
             localStorage.getItem('iconColor')
           );
           // play sound?
-          if (localStorage.getItem('isSound') == 'true'
-            && (count > parseInt(localStorage.getItem('count')) || localStorage.getItem('count') === null)
+          if (localStorage.getItem('isSound') == 'true' && (count > parseInt(localStorage.getItem('count')) || localStorage.getItem('count') === null)
           ) {
             playSound();
           }
@@ -85,10 +84,10 @@
     chrome.browserAction.setTitle({
       title: title
     });
-    if (icon != null) {
+    if (icon !== null) {
       chrome.browserAction.setIcon({
         path: icon
-      })
+      });
     }
   }
 
@@ -114,7 +113,7 @@
   }();
 
   function isFacebookHomeUrl(url) {
-    return url.indexOf(HOME_URL) == 0;
+    return url.indexOf(HOME_URL) === 0;
   }
 
   function openFacebookHomeInTab() {
@@ -166,6 +165,7 @@
     switch (details.reason) {
       case 'install':
         chrome.runtime.openOptionsPage();
+        break;
       default:
         updateBadge();
     }
