@@ -19,7 +19,7 @@ Installation
 ### From [Chrome Web Store](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)  
 [![Facebook Notifier available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)
 
-### Development [![Build Status](https://www.travis-ci.org/Narno/Facebook-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/Facebook-Notifier)
+## Development [![Build Status](https://www.travis-ci.org/Narno/Facebook-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/Facebook-Notifier)
 
 ```bash
 npm install
