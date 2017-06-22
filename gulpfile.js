@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     del = require('del'),
     vinylpaths = require('vinyl-paths'),
     cleanhtml = require('gulp-cleanhtml'),
-    minifycss = require('gulp-minify-css'),
+    cleancss = require('gulp-clean-css'),
     jshint = require('gulp-jshint'),
     stripdebug = require('gulp-strip-debug'),
     uglify = require('gulp-uglify'),
@@ -62,7 +62,7 @@ gulp.task('styles', function() {
     gulp.src('src/**/*.min.css')
         .pipe(gulp.dest('build'));
     return gulp.src(['src/*.css', '!src/vendor/**/*.css'])
-        .pipe(minifycss({root: 'src', keepSpecialComments: 0}))
+        .pipe(cleancss({root: 'src', keepSpecialComments: 0}))
         .pipe(gulp.dest('build'));
 });
 
