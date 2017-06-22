@@ -1,4 +1,12 @@
 sudo: false
 language: node_js
 node_js:
-  - "0.12"
+  - '0.12'
+env:
+  - EXTENSION_ID=hnhcdhgekpmjjgdfimnigdeghjhicnea
+deploy:
+  provider: script
+  script: npm run release
+  on:
+    branch: master
+    tags: true

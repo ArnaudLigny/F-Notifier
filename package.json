@@ -1,6 +1,6 @@
 {
   "name": "Facebook-Notifier",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Displays your Facebook notifications unread count.",
   "homepage": "http://narno.org/Facebook-Notifier",
   "author": "Arnaud Ligny",
@@ -14,7 +14,9 @@
   },
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/gulp",
+    "release": "npm run build && node_modules/.bin/webstore upload --source=build --auto-publish"
   },
   "devDependencies": {
     "chrome-webstore-upload-cli": "^1.1.1",
