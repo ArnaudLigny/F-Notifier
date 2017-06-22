@@ -66,8 +66,11 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('build'));
 });
 
-// build ditributable after other tasks completed
-gulp.task('zip', ['html', 'scripts', 'styles', 'copy'], function() {
+// build
+gulp.task('build', ['html', 'scripts', 'styles', 'copy']);
+
+// build ditributable (ZIP)
+gulp.task('zip', ['build'], function() {
     var manifest = require('./build/manifest.json'),
         distFileName = extension_name + '_v' + manifest.version + '.zip';
     return gulp.src(['build/**'])
