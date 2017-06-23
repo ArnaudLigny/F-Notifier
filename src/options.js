@@ -1,16 +1,17 @@
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var inputIconB = document.getElementById('iconB');
-    var inputIconW = document.getElementById('iconW');
-    var inputLandingPage = document.getElementById('landingPage');
-    var inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
-    var inputIsSound = document.getElementById('isSound');
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputIconB = document.getElementById('iconB');
+    const inputIconW = document.getElementById('iconW');
+    const inputLandingPage = document.getElementById('landingPage');
+    const inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
+    const inputIsSound = document.getElementById('isSound');
 
     // Apply translations
     function applyTranslations() {
-      var objects = document.getElementsByTagName('*'), i;
+      const objects = document.getElementsByTagName('*');
+      let i;
       for (i = 0; i < objects.length; i++) {
         if (objects[i].dataset && objects[i].dataset.message) {
           objects[i].innerHTML = chrome.i18n.getMessage(objects[i].dataset.message);
@@ -21,34 +22,28 @@
 
     // Laod options
     function loadOptions() {
-      // icon
+      // Icon
       if (localStorage.getItem('iconColor') === null) {
         inputIconB.checked = true;
       } else {
-        if (localStorage.getItem('iconColor') == 'icon-19.png') {
+        inputIconW.checked = true;
+        if (localStorage.getItem('iconColor') === 'icon-19.png') {
           inputIconB.checked = true;
-        } else {
-          inputIconW.checked = true;
         }
       }
-      // page
+      // Page
+      inputLandingPage.value = localStorage.getItem('landingPage');
       if (localStorage.getItem('landingPage') === null) {
         inputLandingPage.value = 'home';
-      } else {
-        inputLandingPage.value = localStorage.getItem('landingPage');
       }
+      inputLandingPageIfNotif.value = localStorage.getItem('landingPageIfNotif');
       if (localStorage.getItem('landingPageIfNotif') === null) {
         inputLandingPageIfNotif.value = 'notifications';
-      } else {
-        inputLandingPageIfNotif.value = localStorage.getItem('landingPageIfNotif');
       }
-      // sound
-      if (localStorage.getItem('isSound') === null) {
-        inputIsSound.checked = false;
-      } else {
-        if (localStorage.getItem('isSound') === 'true') {
-          inputIsSound.checked = true;
-        }
+      // Sound
+      inputIsSound.checked = false;
+      if (localStorage.getItem('isSound') === 'true') {
+        inputIsSound.checked = true;
       }
     }
     loadOptions();
@@ -65,19 +60,19 @@
       localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
-    document.getElementById('iconB').addEventListener('change', function () {
+    document.getElementById('iconB').addEventListener('change', () => {
       saveOptions();
     });
-    document.getElementById('iconW').addEventListener('change', function () {
+    document.getElementById('iconW').addEventListener('change', () => {
       saveOptions();
     });
-    document.getElementById('landingPage').addEventListener('change', function () {
+    document.getElementById('landingPage').addEventListener('change', () => {
       saveOptions();
     });
-    document.getElementById('landingPageIfNotif').addEventListener('change', function () {
+    document.getElementById('landingPageIfNotif').addEventListener('change', () => {
       saveOptions();
     });
-    document.getElementById('isSound').addEventListener('change', function () {
+    document.getElementById('isSound').addEventListener('change', () => {
       saveOptions();
     });
   });

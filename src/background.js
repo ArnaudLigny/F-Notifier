@@ -1,48 +1,69 @@
 (function () {
-  "use strict";
+  'use strict';
 
   /**
    * Config
    */
 
-  var HOME_URL = 'https://www.facebook.com/';
-  var NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
-  var soundBleep = 'notification.mp3';
+  const HOME_URL = 'https://www.facebook.com/';
+  const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
+  const soundBleep = 'notification.mp3';
+
+  // XHR helper function
+  const xhr = (function () {
+    const xhr = new XMLHttpRequest();
+    return function (method, url, callback) {
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status !== 200) {
+            callback(false);
+          }
+          callback(xhr.responseText);
+        }
+      };
+      xhr.open(method, url);
+      xhr.send();
+    };
+  })();
 
   /**
    * Main functions
    */
 
   // Notifications count function
-  window.NotificationsCount = function (callback) {
-    var tmpDom = document.createElement('div');
+  const notificationsCount = callback => {
+    const tmpDom = document.createElement('div');
 
-    xhr('GET', HOME_URL, function (data) {
-      var notifElem, countElem;
+    xhr('GET', HOME_URL, data => {
+      const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
+      const countElem = tmpDom.querySelector('#notificationsCountValue');
       tmpDom.innerHTML = data;
 
       if (data === false) {
         callback(false);
       }
-      notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
+
       if (notifElem) {
-        countElem = tmpDom.querySelector('#notificationsCountValue');
         if (countElem) {
           callback(countElem.textContent);
-        } else {
-          callback('0');
         }
-      } else {
-        callback(false);
+        callback('0');
       }
+      callback(false);
     });
   };
 
-  // update badge
+  // Update badge
   function updateBadge() {
-    NotificationsCount(function (count) {
-      if (count !== false) {
-        if (count == '0') {
+    notificationsCount(count => {
+      if (count === false) {
+        render(
+          '?',
+          [190, 190, 190, 230],
+          chrome.i18n.getMessage('browserActionErrorTitle')
+        );
+      } else {
+        if (count === '0') {
           render(
             '',
             [208, 0, 24, 255],
@@ -56,33 +77,27 @@
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
             localStorage.getItem('iconColor')
           );
-          // play sound?
-          if (localStorage.getItem('isSound') == 'true' && (count > parseInt(localStorage.getItem('count')) || localStorage.getItem('count') === null)
+          // Play sound?
+          if (localStorage.getItem('isSound') === 'true' && (count > parseInt(localStorage.getItem('count'), 10) || localStorage.getItem('count') === null)
           ) {
             playSound();
           }
         }
         localStorage.setItem('count', count);
-      } else {
-        render(
-          '?',
-          [190, 190, 190, 230],
-          chrome.i18n.getMessage('browserActionErrorTitle')
-        );
       }
     });
   }
 
-  // badge renderer
+  // Badge renderer
   function render(badge, color, title, icon) {
     chrome.browserAction.setBadgeText({
       text: badge
     });
     chrome.browserAction.setBadgeBackgroundColor({
-      color: color
+      color
     });
     chrome.browserAction.setTitle({
-      title: title
+      title
     });
     if (icon !== null) {
       chrome.browserAction.setIcon({
@@ -95,36 +110,19 @@
    * Helpers
    */
 
-  // XHR helper function
-  var xhr = function () {
-    var xhr = new XMLHttpRequest();
-    return function(method, url, callback) {
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status !== 200) {
-            callback(false);
-          }
-          callback(xhr.responseText);
-        }
-      };
-      xhr.open(method, url);
-      xhr.send();
-    };
-  }();
-
   function isFacebookHomeUrl(url) {
     return url.indexOf(HOME_URL) === 0;
   }
 
   function openFacebookHomeInTab() {
-    chrome.tabs.getAllInWindow(undefined, function(tabs) {
-      for (var i = 0, tab; tab = tabs[i]; i++) {
+    chrome.tabs.getAllInWindow(undefined, tabs => {
+      for (let i = 0, tab; (tab = tabs[i]); i++) {
         if (tab.url && isFacebookHomeUrl(tab.url)) {
           chrome.tabs.update(tab.id, {highlighted: true});
           return;
         }
       }
-      if (parseInt(localStorage.getItem('count')) > 0) {
+      if (parseInt(localStorage.getItem('count'), 10) > 0) {
         if (localStorage.getItem('landingPageIfNotif') === null || localStorage.getItem('landingPageIfNotif') === 'notifications') {
           chrome.tabs.create({url: NOTIFICATIONS_URL});
         } else {
@@ -141,7 +139,7 @@
   }
 
   function playSound() {
-    var notifAudio = new Audio();
+    const notifAudio = new Audio();
     notifAudio.src = soundBleep;
     notifAudio.play();
   }
@@ -154,14 +152,14 @@
   chrome.alarms.create({delayInMinutes: 1, periodInMinutes: 1});
   chrome.alarms.onAlarm.addListener(updateBadge);
 
-  // browser action
-  chrome.browserAction.onClicked.addListener(function () {
+  // Browser action
+  chrome.browserAction.onClicked.addListener(() => {
     updateBadge();
     openFacebookHomeInTab();
   });
 
-  // check whether new version is installed
-  chrome.runtime.onInstalled.addListener(function (details) {
+  // Check whether new version is installed
+  chrome.runtime.onInstalled.addListener(details => {
     switch (details.reason) {
       case 'install':
         chrome.runtime.openOptionsPage();
@@ -171,12 +169,14 @@
     }
   });
 
-  // on message update badge
-  chrome.runtime.onMessage.addListener(function (message, sender, response) {
+  // On message update badge
+  chrome.runtime.onMessage.addListener(message => {
     switch (message.do) {
       case 'updatebadge':
         updateBadge();
         break;
+      default:
+        // Nothing to do!
     }
   });
 })();
