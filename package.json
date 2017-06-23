@@ -14,7 +14,7 @@
   },
   "main": "gulpfile.js",
   "scripts": {
-    "test": "xo && npm run build",
+    "test": "npm run build & xo",
     "build": "node_modules/.bin/gulp",
     "release": "cd build && webstore upload --auto-publish"
   },
