@@ -35,35 +35,33 @@
     const tmpDom = document.createElement('div');
 
     xhr('GET', HOME_URL, data => {
+      if (data === false) {
+        callback('error');
+      }
+
+      tmpDom.innerHTML = data;
       const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
       const countElem = tmpDom.querySelector('#notificationsCountValue');
-      tmpDom.innerHTML = data;
-
-      if (data === false) {
-        callback(false);
-      }
 
       if (notifElem) {
         if (countElem) {
-          callback(countElem.textContent);
+          callback(parseInt(countElem.textContent, 10));
         }
-        callback('0');
       }
-      callback(false);
     });
   };
 
   // Update badge
   function updateBadge() {
     notificationsCount(count => {
-      if (count === false) {
+      if (count === 'error') {
         render(
           '?',
           [190, 190, 190, 230],
           chrome.i18n.getMessage('browserActionErrorTitle')
         );
       } else {
-        if (count === '0') {
+        if (count === 0) {
           render(
             '',
             [208, 0, 24, 255],
@@ -72,7 +70,7 @@
           );
         } else {
           render(
-            count,
+            count.toString(),
             [208, 0, 24, 255],
             chrome.i18n.getMessage('browserActionDefaultTitle', count),
             localStorage.getItem('iconColor')
