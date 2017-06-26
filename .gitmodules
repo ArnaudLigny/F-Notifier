@@ -1,3 +1,0 @@
-[submodule "src/vendor/chrome-bootstrap"]
-	path = src/vendor/chrome-bootstrap
-	url = https://github.com/better-history/chrome-bootstrap.git
