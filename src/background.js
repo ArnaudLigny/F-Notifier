@@ -65,14 +65,14 @@
           render(
             '',
             [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count),
+            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
             localStorage.getItem('iconColor')
           );
         } else {
           render(
             count.toString(),
             [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count),
+            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
             localStorage.getItem('iconColor')
           );
           // Play sound?
