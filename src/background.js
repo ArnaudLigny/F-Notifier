@@ -154,4 +154,19 @@
 
   // On message update badge
 	chrome.runtime.onMessage.addListener(updateBadge);
+
+	// Handle connection status events
+	function handleConnectionStatus(event) {
+		if (event.type === 'online') {
+			updateBadge();
+		} else if (event.type === 'offline') {
+			render(
+				'?',
+				[245, 159, 0, 255],
+				chrome.i18n.getMessage('browserActionErrorTitle')
+			);
+		}
+	}
+	window.addEventListener('online', handleConnectionStatus);
+	window.addEventListener('offline', handleConnectionStatus);
 })();
