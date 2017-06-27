@@ -9,46 +9,34 @@
   const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
   const soundBleep = 'notification.mp3';
 
-  // XHR helper function
-  const xhr = (function () {
-    const xhr = new XMLHttpRequest();
-    return function (method, url, callback) {
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status !== 200) {
-            callback(false);
-          }
-          callback(xhr.responseText);
-        }
-      };
-      xhr.open(method, url);
-      xhr.send();
-    };
-  })();
-
   /**
    * Main functions
    */
 
   // Notifications count function
   const notificationsCount = callback => {
-    const tmpDom = document.createElement('div');
+		const parser = new DOMParser();
 
-    xhr('GET', HOME_URL, data => {
-      if (data === false) {
-        callback('error');
-      }
+		window.fetch(HOME_URL, {
+			credentials: 'include'
+		})
+			.then(response => {
+				if (response.ok) {
+					return response.text();
+				}
 
-      tmpDom.innerHTML = data;
-      const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
-      const countElem = tmpDom.querySelector('#notificationsCountValue');
+				throw new Error();
+			})
+			.then(data => {
+				let tmpDom = parser.parseFromString(data, 'text/html');
+				let notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
+				let countElem = tmpDom.querySelector('#notificationsCountValue');
 
-      if (notifElem) {
-        if (countElem) {
-          callback(parseInt(countElem.textContent, 10));
-        }
-      }
-    });
+				if (notifElem && countElem) {
+					callback(countElem.textContent);
+				}
+			})
+			.catch(callback);
   };
 
   // Update badge
@@ -62,7 +50,7 @@
         );
       } else {
 				render(
-					count ? count.toString() : '',
+					parseInt(count) ? count : '',
 					[208, 0, 24, 255],
 					chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
 					localStorage.getItem('iconColor')
@@ -70,7 +58,7 @@
 				// Play sound?
 				if (
 					localStorage.getItem('isSound') === 'true' &&
-					(count > parseInt(localStorage.getItem('count'), 10) ||
+					(parseInt(count) > parseInt(localStorage.getItem('count')) ||
 						localStorage.getItem('count') === null)
 				) {
 					playSound();
