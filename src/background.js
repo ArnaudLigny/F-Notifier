@@ -98,32 +98,35 @@
    * Helpers
    */
 
-  function isFacebookHomeUrl(url) {
-    return url.indexOf(HOME_URL) === 0;
+  function getTabUrl() {
+		if (parseInt(localStorage.getItem('count'), 10) > 0) {
+			if (localStorage.getItem('landingPageIfNotif') === 'home') {
+				return HOME_URL;
+			} else {
+				return NOTIFICATIONS_URL;
+			}
+		} else {
+			if (localStorage.getItem('landingPage') === 'notifications') {
+				return NOTIFICATIONS_URL;
+			} else {
+				return HOME_URL;
+			}
+		}
   }
 
-  function openFacebookHomeInTab() {
-    chrome.tabs.getAllInWindow(undefined, tabs => {
-      for (let i = 0, tab; (tab = tabs[i]); i++) {
-        if (tab.url && isFacebookHomeUrl(tab.url)) {
-          chrome.tabs.update(tab.id, {highlighted: true});
-          return;
-        }
-      }
-      if (parseInt(localStorage.getItem('count'), 10) > 0) {
-        if (localStorage.getItem('landingPageIfNotif') === null || localStorage.getItem('landingPageIfNotif') === 'notifications') {
-          chrome.tabs.create({url: NOTIFICATIONS_URL});
-        } else {
-          chrome.tabs.create({url: HOME_URL});
-        }
-      } else {
-        if (localStorage.getItem('landingPage') === null || localStorage.getItem('landingPage') === 'home') {
-          chrome.tabs.create({url: HOME_URL});
-        } else {
-          chrome.tabs.create({url: NOTIFICATIONS_URL});
-        }
-      }
-    });
+	function openFacebookHomeInTab(tab) {
+		chrome.tabs.query({
+			currentWindow: true,
+			url: HOME_URL + '*'
+		}, tabs => {
+			if (tabs && tabs.length > 0) {
+				return chrome.tabs.update(tabs[0].id, {active: true});
+			}
+			if (tab && tab.url === 'chrome://newtab/') {
+				return chrome.tabs.update(null, {url: getTabUrl(), active: false});
+			}
+			return chrome.tabs.create({url: getTabUrl()});
+		});
   }
 
   function playSound() {
@@ -140,9 +143,9 @@
   chrome.alarms.onAlarm.addListener(updateBadge);
 
   // Browser action
-  chrome.browserAction.onClicked.addListener(() => {
+  chrome.browserAction.onClicked.addListener(tab => {
     updateBadge();
-    openFacebookHomeInTab();
+    openFacebookHomeInTab(tab);
   });
 
   // Check whether new version is installed
