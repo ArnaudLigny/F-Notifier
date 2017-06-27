@@ -61,26 +61,20 @@
           chrome.i18n.getMessage('browserActionErrorTitle')
         );
       } else {
-        if (count === 0) {
-          render(
-            '',
-            [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
-            localStorage.getItem('iconColor')
-          );
-        } else {
-          render(
-            count.toString(),
-            [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
-            localStorage.getItem('iconColor')
-          );
-          // Play sound?
-          if (localStorage.getItem('isSound') === 'true' && (count > parseInt(localStorage.getItem('count'), 10) || localStorage.getItem('count') === null)
-          ) {
-            playSound();
-          }
-        }
+				render(
+					count ? count.toString() : '',
+					[208, 0, 24, 255],
+					chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
+					localStorage.getItem('iconColor')
+				);
+				// Play sound?
+				if (
+					localStorage.getItem('isSound') === 'true' &&
+					(count > parseInt(localStorage.getItem('count'), 10) ||
+						localStorage.getItem('count') === null)
+				) {
+					playSound();
+				}
         localStorage.setItem('count', count);
       }
     });
