@@ -1,8 +1,0 @@
-site:
-  title: Facebook Notifier
-  baseline:
-  baseurl: http://narno.org/Facebook-Notifier/
-  description: Facebook Notifier is a Google Chrome extension that displays your [Facebook](http://www.facebook.com) notifications unread count.
-  language: en
-output:
-    dir: ../docs
