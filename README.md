@@ -3,9 +3,9 @@ Facebook Notifier
 
 Facebook Notifier is a Google Chrome extension that displays your [Facebook](http://www.facebook.com) notifications unread count.
 
-![Facebook Notifier screenshot](https://raw.github.com/Narno/Facebook-Notifier/master/docs/screenshots/screenshot_600x360.png "Facebook Notifier screenshot")
+![Facebook Notifier screenshot](https://raw.github.com/Narno/Facebook-Notifier/gh-pages/screenshots/screenshot_600x360.png "Facebook Notifier screenshot")
 
-![Facebook Notifier options screenshot](https://raw.github.com/Narno/Facebook-Notifier/master/docs/screenshots/screenshot_options_401x317.png "Facebook Notifier options screenshot")
+![Facebook Notifier options screenshot](https://raw.github.com/Narno/Facebook-Notifier/gh-pages/screenshots/screenshot_options_401x317.png "Facebook Notifier options screenshot")
 
 Installation
 ------------
