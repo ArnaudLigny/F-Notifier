@@ -2,3 +2,4 @@ build
 dist
 certs
 node_modules
+docs-source/.phpoole/*
