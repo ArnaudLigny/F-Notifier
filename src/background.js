@@ -57,7 +57,7 @@
       if (count === 'error') {
         render(
           '?',
-          [190, 190, 190, 230],
+          [190, 190, 190, 255],
           chrome.i18n.getMessage('browserActionErrorTitle')
         );
       } else {
@@ -87,22 +87,12 @@
   }
 
   // Badge renderer
-  function render(badge, color, title, icon) {
-    chrome.browserAction.setBadgeText({
-      text: badge
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color
-    });
-    chrome.browserAction.setTitle({
-      title
-    });
-    if (icon !== null) {
-      chrome.browserAction.setIcon({
-        path: icon
-      });
-    }
-  }
+	function render(text, color, title, icon) {
+		chrome.browserAction.setBadgeText({text});
+		chrome.browserAction.setBadgeBackgroundColor({color});
+		chrome.browserAction.setTitle({title});
+		chrome.browserAction.setIcon({path: icon});
+	}
 
   /**
    * Helpers
@@ -137,8 +127,7 @@
   }
 
   function playSound() {
-    const notifAudio = new Audio();
-    notifAudio.src = soundBleep;
+    const notifAudio = new Audio(soundBleep);
     notifAudio.play();
   }
 
@@ -157,24 +146,12 @@
   });
 
   // Check whether new version is installed
-  chrome.runtime.onInstalled.addListener(details => {
-    switch (details.reason) {
-      case 'install':
-        chrome.runtime.openOptionsPage();
-        break;
-      default:
-        updateBadge();
-    }
+	chrome.runtime.onInstalled.addListener(details => {
+		if (details.reason === 'install') {
+			chrome.runtime.openOptionsPage();
+		}
   });
 
   // On message update badge
-  chrome.runtime.onMessage.addListener(message => {
-    switch (message.do) {
-      case 'updatebadge':
-        updateBadge();
-        break;
-      default:
-        // Nothing to do!
-    }
-  });
+	chrome.runtime.onMessage.addListener(updateBadge);
 })();
