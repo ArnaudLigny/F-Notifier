@@ -16,7 +16,7 @@
     "permissions": [
         "alarms",
         "tabs",
-        "*://www.facebook.com/"
+        "https://www.facebook.com/"
     ],
 	"browser_action": {
 		"default_icon": {
