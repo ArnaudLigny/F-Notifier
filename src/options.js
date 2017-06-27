@@ -27,7 +27,7 @@
         inputIconB.checked = true;
       } else {
         inputIconW.checked = true;
-        if (localStorage.getItem('iconColor') === 'icon-19.png') {
+        if (localStorage.getItem('iconColor') === 'icon-38.png') {
           inputIconB.checked = true;
         }
       }
@@ -51,9 +51,9 @@
     // Save options
     function saveOptions() {
       if (inputIconB.checked) {
-        localStorage.setItem('iconColor', 'icon-19.png');
+        localStorage.setItem('iconColor', 'icon-38.png');
       } else {
-        localStorage.setItem('iconColor', 'icon-w-19.png');
+        localStorage.setItem('iconColor', 'icon-w-38.png');
       }
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
