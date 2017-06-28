@@ -25,7 +25,7 @@
           return response.text();
         }
 
-        throw new Error();
+        throw new Error('Network response was not OK.');
       })
       .then(data => {
         const tmpDom = parser.parseFromString(data, 'text/html');
@@ -42,7 +42,7 @@
   // Update badge
   function updateBadge() {
     notificationsCount(count => {
-      if (count === 'error') {
+      if (count instanceof Error) {
         render(
           '?',
           [190, 190, 190, 255],
