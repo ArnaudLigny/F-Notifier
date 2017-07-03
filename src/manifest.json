@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "homepage_url": "http://narno.org/Facebook-Notifier/",
     "background": {
         "persistent": false,
@@ -16,18 +16,17 @@
     "permissions": [
         "alarms",
         "tabs",
-        "*://www.facebook.com/"
+        "https://www.facebook.com/"
     ],
-    "browser_action": {
-        "default_icon": "icon-19.png"
-    },
+	"browser_action": {
+		"default_icon": {
+			"38": "icon-38.png"
+		}
+	},
     "icons": {
-        "16": "icon-16.png",
-        "32": "icon-32.png",
-        "48": "icon-48.png",
         "128": "icon-128.png"
     },
-    "minimum_chrome_version": "28",
+    "minimum_chrome_version": "52",
     "manifest_version": 2,
     "default_locale": "en"
 }

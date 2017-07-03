@@ -9,77 +9,59 @@
   const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
   const soundBleep = 'notification.mp3';
 
-  // XHR helper function
-  const xhr = (function () {
-    const xhr = new XMLHttpRequest();
-    return function (method, url, callback) {
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status !== 200) {
-            callback(false);
-          }
-          callback(xhr.responseText);
-        }
-      };
-      xhr.open(method, url);
-      xhr.send();
-    };
-  })();
-
   /**
    * Main functions
    */
 
   // Notifications count function
   const notificationsCount = callback => {
-    const tmpDom = document.createElement('div');
+    const parser = new DOMParser();
 
-    xhr('GET', HOME_URL, data => {
-      if (data === false) {
-        callback('error');
-      }
-
-      tmpDom.innerHTML = data;
-      const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
-      const countElem = tmpDom.querySelector('#notificationsCountValue');
-
-      if (notifElem) {
-        if (countElem) {
-          callback(parseInt(countElem.textContent, 10));
+    window.fetch(HOME_URL, {
+      credentials: 'include'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.text();
         }
-      }
-    });
+
+        throw new Error('Network response was not OK.');
+      })
+      .then(data => {
+        const tmpDom = parser.parseFromString(data, 'text/html');
+        const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
+        const countElem = tmpDom.querySelector('#notificationsCountValue');
+
+        if (notifElem && countElem) {
+          callback(countElem.textContent);
+        }
+      })
+      .catch(callback);
   };
 
   // Update badge
   function updateBadge() {
     notificationsCount(count => {
-      if (count === 'error') {
+      if (count instanceof Error) {
         render(
           '?',
-          [190, 190, 190, 230],
+          [190, 190, 190, 255],
           chrome.i18n.getMessage('browserActionErrorTitle')
         );
       } else {
-        if (count === 0) {
-          render(
-            '',
-            [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
-            localStorage.getItem('iconColor')
-          );
-        } else {
-          render(
-            count.toString(),
-            [208, 0, 24, 255],
-            chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
-            localStorage.getItem('iconColor')
-          );
-          // Play sound?
-          if (localStorage.getItem('isSound') === 'true' && (count > parseInt(localStorage.getItem('count'), 10) || localStorage.getItem('count') === null)
-          ) {
-            playSound();
-          }
+        render(
+          parseInt(count, 10) ? count : '',
+          [208, 0, 24, 255],
+          chrome.i18n.getMessage('browserActionDefaultTitle', count),
+          localStorage.getItem('iconColor')
+        );
+        // Play sound?
+        if (
+          localStorage.getItem('isSound') === 'true' &&
+          (parseInt(count, 10) > parseInt(localStorage.getItem('count'), 10) ||
+            localStorage.getItem('count') === null)
+        ) {
+          playSound();
         }
         localStorage.setItem('count', count);
       }
@@ -87,58 +69,47 @@
   }
 
   // Badge renderer
-  function render(badge, color, title, icon) {
-    chrome.browserAction.setBadgeText({
-      text: badge
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color
-    });
-    chrome.browserAction.setTitle({
-      title
-    });
-    if (icon !== null) {
-      chrome.browserAction.setIcon({
-        path: icon
-      });
-    }
+  function render(text, color, title, icon) {
+    chrome.browserAction.setBadgeText({text});
+    chrome.browserAction.setBadgeBackgroundColor({color});
+    chrome.browserAction.setTitle({title});
+    chrome.browserAction.setIcon({path: icon});
   }
 
   /**
    * Helpers
    */
 
-  function isFacebookHomeUrl(url) {
-    return url.indexOf(HOME_URL) === 0;
+  function getTabUrl() {
+    if (parseInt(localStorage.getItem('count'), 10) > 0) {
+      if (localStorage.getItem('landingPageIfNotif') === 'home') {
+        return HOME_URL;
+      }
+      return NOTIFICATIONS_URL;
+    }
+    if (localStorage.getItem('landingPage') === 'notifications') {
+      return NOTIFICATIONS_URL;
+    }
+    return HOME_URL;
   }
 
-  function openFacebookHomeInTab() {
-    chrome.tabs.getAllInWindow(undefined, tabs => {
-      for (let i = 0, tab; (tab = tabs[i]); i++) {
-        if (tab.url && isFacebookHomeUrl(tab.url)) {
-          chrome.tabs.update(tab.id, {highlighted: true});
-          return;
-        }
+  function openFacebookHomeInTab(tab) {
+    chrome.tabs.query({
+      currentWindow: true,
+      url: HOME_URL + '*'
+    }, tabs => {
+      if (tabs && tabs.length > 0) {
+        return chrome.tabs.update(tabs[0].id, {active: true});
       }
-      if (parseInt(localStorage.getItem('count'), 10) > 0) {
-        if (localStorage.getItem('landingPageIfNotif') === null || localStorage.getItem('landingPageIfNotif') === 'notifications') {
-          chrome.tabs.create({url: NOTIFICATIONS_URL});
-        } else {
-          chrome.tabs.create({url: HOME_URL});
-        }
-      } else {
-        if (localStorage.getItem('landingPage') === null || localStorage.getItem('landingPage') === 'home') {
-          chrome.tabs.create({url: HOME_URL});
-        } else {
-          chrome.tabs.create({url: NOTIFICATIONS_URL});
-        }
+      if (tab && tab.url === 'chrome://newtab/') {
+        return chrome.tabs.update(null, {url: getTabUrl(), active: false});
       }
+      return chrome.tabs.create({url: getTabUrl()});
     });
   }
 
   function playSound() {
-    const notifAudio = new Audio();
-    notifAudio.src = soundBleep;
+    const notifAudio = new Audio(soundBleep);
     notifAudio.play();
   }
 
@@ -151,30 +122,33 @@
   chrome.alarms.onAlarm.addListener(updateBadge);
 
   // Browser action
-  chrome.browserAction.onClicked.addListener(() => {
+  chrome.browserAction.onClicked.addListener(tab => {
     updateBadge();
-    openFacebookHomeInTab();
+    openFacebookHomeInTab(tab);
   });
 
   // Check whether new version is installed
   chrome.runtime.onInstalled.addListener(details => {
-    switch (details.reason) {
-      case 'install':
-        chrome.runtime.openOptionsPage();
-        break;
-      default:
-        updateBadge();
+    if (details.reason === 'install') {
+      chrome.runtime.openOptionsPage();
     }
   });
 
   // On message update badge
-  chrome.runtime.onMessage.addListener(message => {
-    switch (message.do) {
-      case 'updatebadge':
-        updateBadge();
-        break;
-      default:
-        // Nothing to do!
+  chrome.runtime.onMessage.addListener(updateBadge);
+
+  // Handle connection status events
+  function handleConnectionStatus(event) {
+    if (event.type === 'online') {
+      updateBadge();
+    } else if (event.type === 'offline') {
+      render(
+        '?',
+        [245, 159, 0, 255],
+        chrome.i18n.getMessage('browserActionErrorTitle')
+      );
     }
-  });
+  }
+  window.addEventListener('online', handleConnectionStatus);
+  window.addEventListener('offline', handleConnectionStatus);
 })();
