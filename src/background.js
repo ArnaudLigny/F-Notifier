@@ -52,7 +52,7 @@
         render(
           parseInt(count, 10) ? count : '',
           [208, 0, 24, 255],
-          chrome.i18n.getMessage('browserActionDefaultTitle', count.toString()),
+          chrome.i18n.getMessage('browserActionDefaultTitle', count),
           localStorage.getItem('iconColor')
         );
         // Play sound?
