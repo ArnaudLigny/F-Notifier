@@ -19,6 +19,9 @@ Installation
 ### From [Chrome Web Store](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)  
 [![Facebook Notifier available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)
 
+### From [Mozilla Add-ons](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)  
+[![Facebook Notifier available in Mozilla Add-ons](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)
+
 ## Development [![Build Status](https://www.travis-ci.org/Narno/Facebook-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/Facebook-Notifier)
 
 ```bash
