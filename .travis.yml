@@ -5,18 +5,18 @@ node_js:
 env:
   - EXTENSION_ID=hnhcdhgekpmjjgdfimnigdeghjhicnea
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: npm run release
-    on:
-      branch: master
-      tags: true
   - provider: releases
     skip_cleanup: true
     overwrite: true
     api-key: $GITHUB_TOKEN
     file_glob: true
     file: "dist/*"
+    on:
+      branch: master
+      tags: true
+  - provider: script
+    skip_cleanup: true
+    script: npm run release
     on:
       branch: master
       tags: true

@@ -82,8 +82,8 @@ gulp.task('crx', ['build'], () => {
   });
 });
 
-// Build distributables
-gulp.task('dist', ['zip', 'crx']);
+// Build distributable
+gulp.task('dist', ['zip']);
 
 // Run build task by default
 gulp.task('default', ['clean'], () => {
