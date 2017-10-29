@@ -15,9 +15,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "xo",
-    "build": "node_modules/.bin/gulp",
-    "build:zip": "node_modules/.bin/gulp zip",
-    "build:crx": "node_modules/.bin/gulp crx",
+    "build": "node_modules/.bin/gulp dist",
     "release:cws": "cd build && webstore upload --auto-publish",
     "release:amo": "cd build && webext submit",
     "release": "npm run build && npm run release:cws && npm run release:amo"

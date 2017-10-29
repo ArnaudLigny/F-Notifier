@@ -56,7 +56,7 @@ gulp.task('copy', () => {
 gulp.task('build', ['clean', 'html', 'scripts', 'styles', 'copy']);
 
 // Build ditributable (ZIP)
-gulp.task('zip', ['clean', 'build'], () => {
+gulp.task('zip', ['build'], () => {
   const manifest = require('./src/manifest.json');
   const distFileName = extensionName + '_v' + manifest.version + '.zip';
   return gulp.src(['build/**'])
@@ -65,7 +65,7 @@ gulp.task('zip', ['clean', 'build'], () => {
 });
 
 // Build distributable (CRX) extension
-gulp.task('crx', ['clean', 'build'], () => {
+gulp.task('crx', ['build'], () => {
   const manifest = require('./src/manifest.json');
   const crxFileName = extensionName + '_v' + manifest.version + '.crx';
   fs.access('./certs/key', err => {
@@ -81,6 +81,9 @@ gulp.task('crx', ['clean', 'build'], () => {
       .pipe(gulp.dest('dist'));
   });
 });
+
+// Build distributables
+gulp.task('dist', ['zip', 'crx']);
 
 // Run build task by default
 gulp.task('default', ['clean'], () => {
