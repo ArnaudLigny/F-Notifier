@@ -2,11 +2,11 @@
 
 const extensionName = 'Facebook-Notifier';
 
+const fs = require('fs');
 const cleancss = require('gulp-clean-css');
 const cleanhtml = require('gulp-cleanhtml');
 const crx = require('gulp-crx');
 const del = require('del');
-const fs = require('fs');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const vinylpaths = require('vinyl-paths');
@@ -57,7 +57,7 @@ gulp.task('build', ['clean', 'html', 'scripts', 'styles', 'copy']);
 
 // Build ditributable (ZIP)
 gulp.task('zip', ['clean', 'build'], () => {
-  const manifest = require('./build/manifest.json');
+  const manifest = require('./src/manifest.json');
   const distFileName = extensionName + '_v' + manifest.version + '.zip';
   return gulp.src(['build/**'])
     .pipe(zip(distFileName))
@@ -66,12 +66,12 @@ gulp.task('zip', ['clean', 'build'], () => {
 
 // Build distributable (CRX) extension
 gulp.task('crx', ['clean', 'build'], () => {
-  const manifest = require('./build/manifest.json');
+  const manifest = require('./src/manifest.json');
   const crxFileName = extensionName + '_v' + manifest.version + '.crx';
-  fs.access('./certs/key', (err) => {
+  fs.access('./certs/key', err => {
     if (err) {
-        gutil.log(err.message);
-        return err.code;
+      gutil.log(err.message);
+      return err.code;
     }
     return gulp.src('build')
       .pipe(crx({
