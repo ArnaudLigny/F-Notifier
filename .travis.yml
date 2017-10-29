@@ -8,7 +8,7 @@ deploy:
   - provider: releases
     skip_cleanup: true
     overwrite: true
-    api-key: $GITHUB_TOKEN
+    api_key: $GH_TOKEN
     file_glob: true
     file: "dist/*"
     on:
