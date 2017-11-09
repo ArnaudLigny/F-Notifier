@@ -34,6 +34,8 @@
 
         if (notifElem && countElem) {
           callback(countElem.textContent);
+        } else {
+          throw new Error('Unable to parse the response.');
         }
       })
       .catch(callback);
