@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "homepage_url": "https://github.com/Narno/F-Notifier",
   "background": {
     "persistent": false,
@@ -31,7 +31,7 @@
   "default_locale": "en",
   "applications": {
     "gecko": {
-      "id": "{3b5da596-9072-4e68-bce5-adb82ac9063a}",
+      "id": "f-notifier@narno.org",
       "strict_min_version": "53.0"
     }
   }
