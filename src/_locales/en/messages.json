@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Facebook Notifier"
+    "message": "F-Notifier"
   },
   "extDescription": {
     "message": "Displays your Facebook notifications unread count."
@@ -16,9 +16,6 @@
   },
   "browserActionErrorTitle": {
     "message": "You should be logged into your Facebook account"
-  },
-  "optionsSectionToolbarIconColor": {
-    "message": "What icon?"
   },
   "optionsSectionToolbarIconAction": {
     "message": "What page to open?"
