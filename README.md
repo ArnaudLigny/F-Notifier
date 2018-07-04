@@ -12,10 +12,9 @@
 ### From [Mozilla Add-ons](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)
 [![F-Notifier available in Mozilla Add-ons](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)
 
-## Development [![Build Status](https://www.travis-ci.org/Narno/F-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/F-Notifier)
+## Development [![Build Status](https://www.travis-ci.org/Narno/Facebook-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/Facebook-Notifier)
 
 ```bash
 npm install
 npm run build
 ```
-
