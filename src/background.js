@@ -54,8 +54,7 @@
         render(
           parseInt(count, 10) ? count : '',
           [208, 0, 24, 255],
-          chrome.i18n.getMessage('browserActionDefaultTitle', count),
-          localStorage.getItem('iconColor')
+          chrome.i18n.getMessage('browserActionDefaultTitle', count)
         );
         // Play sound?
         if (
@@ -71,11 +70,11 @@
   }
 
   // Badge renderer
-  function render(text, color, title, icon) {
+  function render(text, color, title) {
     chrome.browserAction.setBadgeText({text});
     chrome.browserAction.setBadgeBackgroundColor({color});
     chrome.browserAction.setTitle({title});
-    chrome.browserAction.setIcon({path: icon});
+    chrome.browserAction.setIcon({path: 'icon-38.png'});
   }
 
   /**

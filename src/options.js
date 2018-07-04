@@ -2,8 +2,6 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
-    const inputIconB = document.getElementById('iconB');
-    const inputIconW = document.getElementById('iconW');
     const inputLandingPage = document.getElementById('landingPage');
     const inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
     const inputIsSound = document.getElementById('isSound');
@@ -22,15 +20,6 @@
 
     // Laod options
     function loadOptions() {
-      // Icon
-      if (localStorage.getItem('iconColor') === null) {
-        inputIconB.checked = true;
-      } else {
-        inputIconW.checked = true;
-        if (localStorage.getItem('iconColor') === 'icon-38.png') {
-          inputIconB.checked = true;
-        }
-      }
       // Page
       inputLandingPage.value = localStorage.getItem('landingPage');
       if (localStorage.getItem('landingPage') === null) {
@@ -50,22 +39,11 @@
 
     // Save options
     function saveOptions() {
-      if (inputIconB.checked) {
-        localStorage.setItem('iconColor', 'icon-38.png');
-      } else {
-        localStorage.setItem('iconColor', 'icon-w-38.png');
-      }
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
       localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
-    document.getElementById('iconB').addEventListener('change', () => {
-      saveOptions();
-    });
-    document.getElementById('iconW').addEventListener('change', () => {
-      saveOptions();
-    });
     document.getElementById('landingPage').addEventListener('change', () => {
       saveOptions();
     });

@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Notificateur Facebook"
+    "message": "F-Notifier"
   },
   "extDescription": {
     "message": "Affiche le nombre de notifications Facebook non lus."
@@ -16,9 +16,6 @@
   },
   "browserActionErrorTitle": {
     "message": "Vous devez être connecté à votre compte Facebook"
-  },
-  "optionsSectionToolbarIconColor": {
-    "message": "Quelle icone ?"
   },
   "optionsSectionToolbarIconAction": {
     "message": "Quelle page ouvrir ?"

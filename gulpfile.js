@@ -1,14 +1,14 @@
 'use strict';
 
-const extensionName = 'Facebook-Notifier';
+const extensionName = 'F-Notifier';
 
 const fs = require('fs');
 const cleancss = require('gulp-clean-css');
 const cleanhtml = require('gulp-cleanhtml');
-const crx = require('gulp-crx');
+const crx = require('gulp-crx-pack');
 const del = require('del');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
+const log = require('fancy-log');
 const vinylpaths = require('vinyl-paths');
 const zip = require('gulp-zip');
 
@@ -70,7 +70,7 @@ gulp.task('crx', ['build'], () => {
   const crxFileName = extensionName + '_v' + manifest.version + '.crx';
   fs.access('./certs/key', err => {
     if (err) {
-      gutil.log(err.message);
+      log.error(err.message);
       return err.code;
     }
     return gulp.src('build')
