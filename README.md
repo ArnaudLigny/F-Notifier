@@ -6,7 +6,7 @@
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
 
-## Development [![Build Status](https://www.travis-ci.org/Narno/Facebook-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/Facebook-Notifier)
+## Development [![Build Status](https://www.travis-ci.org/Narno/F-Notifier.svg?branch=master)](https://www.travis-ci.org/Narno/F-Notifier)
 
 ```bash
 npm install
