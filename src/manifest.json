@@ -1,8 +1,13 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "homepage_url": "https://github.com/Narno/F-Notifier",
+  "author": "Arnaud Ligny",
+  "developer": {
+	  "name": "Arnaud Ligny",
+	  "url": "https://arnaudligny.fr"
+  },
   "background": {
     "persistent": false,
     "scripts": [
