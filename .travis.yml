@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - 'node'
 env:
-  - EXTENSION_ID=hnhcdhgekpmjjgdfimnigdeghjhicnea
+  - EXTENSION_ID=befpdcighpikpkklmfonkmdafmfnnkfn
 deploy:
   - provider: script
     skip_cleanup: true
