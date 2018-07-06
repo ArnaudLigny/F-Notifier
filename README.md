@@ -2,7 +2,7 @@
 
 > F-Notifier is a browser extension that displays your [Facebook](http://www.facebook.com) notifications unread count.
 
-[![F-Notifier available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)  [![F-Notifier available in Mozilla Add-ons](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)
+[![F-Notifier available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/facebook-notifier/hnhcdhgekpmjjgdfimnigdeghjhicnea)  [![F-Notifier available in Mozilla Add-ons](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/narno-facebook-notifier/)  [<img src="https://dev.opera.com/extensions/branding-guidelines/addons_206x58_en@2x.png" alt="Get Battlelog Notifier from Opera add-ons" width="206px"/>](https://addons.opera.com/fr/search/?developer=arnaudligny)
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
 
@@ -16,4 +16,4 @@ npm run build
 
 F-Notifier is a free software distributed under the terms of the MIT license.
 
-© 2018 [Arnaud Ligny](https://arnaudligny.fr)  
+© 2014-2018 [Arnaud Ligny](https://arnaudligny.fr)  
