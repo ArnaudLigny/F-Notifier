@@ -5,8 +5,8 @@
   "homepage_url": "https://github.com/Narno/F-Notifier",
   "author": "Arnaud Ligny",
   "developer": {
-	  "name": "Arnaud Ligny",
-	  "url": "https://arnaudligny.fr"
+    "name": "Arnaud Ligny",
+    "url": "https://arnaudligny.fr"
   },
   "background": {
     "persistent": false,
