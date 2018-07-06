@@ -36,7 +36,7 @@
   "default_locale": "en",
   "applications": {
     "gecko": {
-      "id": "f-notifier@narno.org",
+      "id": "F-Notifier@narno.org",
       "strict_min_version": "53.0"
     }
   }
