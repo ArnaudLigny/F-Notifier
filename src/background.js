@@ -33,9 +33,7 @@
         const countMessElem = tmpDom.querySelector('#mercurymessagesCountValue');
         const countReqElem = tmpDom.querySelector('#requestsCountValue');
         if (countNotifElem && countMessElem && countReqElem) {
-          const count = parseInt(countNotifElem.textContent, 10)
-                      + parseInt(countMessElem.textContent, 10)
-                      + parseInt(countReqElem.textContent, 10);
+          const count = parseInt(countNotifElem.textContent, 10) + parseInt(countMessElem.textContent, 10) + parseInt(countReqElem.textContent, 10);
 
           callback(count);
         } else {
