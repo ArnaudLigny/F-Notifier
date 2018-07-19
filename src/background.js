@@ -29,7 +29,6 @@
       })
       .then(data => {
         const tmpDom = parser.parseFromString(data, 'text/html');
-        const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
         const countNotifElem = tmpDom.querySelector('#notificationsCountValue');
         const countMessElem = tmpDom.querySelector('#mercurymessagesCountValue');
         const countReqElem = tmpDom.querySelector('#requestsCountValue');
