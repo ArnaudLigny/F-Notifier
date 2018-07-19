@@ -132,10 +132,10 @@
 
   // Check whether new version is installed
   chrome.runtime.onInstalled.addListener(details => {
-    updateBadge();
     if (details.reason === 'install') {
       chrome.runtime.openOptionsPage();
     }
+    updateBadge();
   });
 
   // On message update badge
