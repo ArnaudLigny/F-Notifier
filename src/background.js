@@ -29,11 +29,13 @@
       })
       .then(data => {
         const tmpDom = parser.parseFromString(data, 'text/html');
-        const notifElem = tmpDom.querySelector('#fbNotificationsJewel > a');
-        const countElem = tmpDom.querySelector('#notificationsCountValue');
+        const countNotifElem = tmpDom.querySelector('#notificationsCountValue');
+        const countMessElem = tmpDom.querySelector('#mercurymessagesCountValue');
+        const countReqElem = tmpDom.querySelector('#requestsCountValue');
+        if (countNotifElem && countMessElem && countReqElem) {
+          const count = parseInt(countNotifElem.textContent, 10) + parseInt(countMessElem.textContent, 10) + parseInt(countReqElem.textContent, 10);
 
-        if (notifElem && countElem) {
-          callback(countElem.textContent);
+          callback(count);
         } else {
           throw new Error('Unable to parse the response.');
         }
@@ -52,14 +54,14 @@
         );
       } else {
         render(
-          parseInt(count, 10) ? count : '',
+          count > 0 ? count.toString() : '',
           [208, 0, 24, 255],
-          chrome.i18n.getMessage('browserActionDefaultTitle', count)
+          count > 0 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserActionNoNotifTitle')
         );
         // Play sound?
         if (
           localStorage.getItem('isSound') === 'true' &&
-          (parseInt(count, 10) > parseInt(localStorage.getItem('count'), 10) ||
+          (count > parseInt(localStorage.getItem('count'), 10) ||
             localStorage.getItem('count') === null)
         ) {
           playSound();
@@ -133,6 +135,7 @@
     if (details.reason === 'install') {
       chrome.runtime.openOptionsPage();
     }
+    updateBadge();
   });
 
   // On message update badge
