@@ -56,9 +56,7 @@
         render(
           count > 0 ? count.toString() : '',
           [208, 0, 24, 255],
-          count > 0 ?
-            chrome.i18n.getMessage('browserActionNotifTitle', count.toString())
-            : chrome.i18n.getMessage('browserActionNoNotifTitle')
+          count > 0 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserActionNoNotifTitle')
         );
         // Play sound?
         if (
