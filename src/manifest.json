@@ -36,7 +36,7 @@
   "default_locale": "en",
   "applications": {
     "gecko": {
-      "id": "F-Notifier@narno.org",
+      "id": "{3b5da596-9072-4e68-bce5-adb82ac9063a}",
       "strict_min_version": "53.0"
     }
   }
