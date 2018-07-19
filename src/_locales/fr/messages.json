@@ -5,14 +5,17 @@
   "extDescription": {
     "message": "Affiche le nombre de notifications Facebook non lus."
   },
-  "browserActionDefaultTitle": {
-    "message": "$count$ notification(s) Facebook",
+  "browserActionNotifTitle": {
+    "message": "$count$ notifications Facebook",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "7"
       }
     }
+  },
+  "browserActionNoNotifTitle": {
+    "message": "0 notification Facebook"
   },
   "browserActionErrorTitle": {
     "message": "Vous devez être connecté à votre compte Facebook"

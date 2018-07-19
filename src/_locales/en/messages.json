@@ -5,14 +5,17 @@
   "extDescription": {
     "message": "Displays your Facebook notifications unread count."
   },
-  "browserActionDefaultTitle": {
-    "message": "$count$ Facebook notification(s)",
+  "browserActionNotifTitle": {
+    "message": "$count$ Facebook notifications",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "7"
       }
     }
+  },
+  "browserActionNoNotifTitle": {
+    "message": "0 Facebook notification"
   },
   "browserActionErrorTitle": {
     "message": "You should be logged into your Facebook account"
