@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDescription__",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "homepage_url": "https://github.com/Narno/F-Notifier",
   "author": "Arnaud Ligny",
   "developer": {
@@ -36,7 +36,7 @@
   "default_locale": "en",
   "applications": {
     "gecko": {
-      "id": "F-Notifier@narno.org",
+      "id": "{3b5da596-9072-4e68-bce5-adb82ac9063a}",
       "strict_min_version": "53.0"
     }
   }
