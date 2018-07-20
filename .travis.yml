@@ -4,6 +4,8 @@ node_js:
   - 'node'
 env:
   - EXTENSION_ID=befpdcighpikpkklmfonkmdafmfnnkfn
+script:
+  - npm run test
 deploy:
   - provider: script
     skip_cleanup: true
