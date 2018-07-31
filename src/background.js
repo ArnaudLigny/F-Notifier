@@ -7,7 +7,6 @@
 
   const HOME_URL = 'https://www.facebook.com/';
   const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
-  const soundBleep = 'notification.mp3';
 
   /**
    * Main functions
