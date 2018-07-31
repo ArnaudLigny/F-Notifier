@@ -4,3 +4,5 @@ const playSound = function () {
   const notifAudio = new Audio(soundBleep);
   notifAudio.play();
 };
+
+export { playSound };
