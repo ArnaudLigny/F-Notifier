@@ -52,6 +52,9 @@
     });
     document.getElementById('isSound').addEventListener('change', () => {
       saveOptions();
+      if (inputIsSound.checked === true) {
+        playSound();
+      }
     });
   });
 })();

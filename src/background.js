@@ -111,11 +111,6 @@
     });
   }
 
-  function playSound() {
-    const notifAudio = new Audio(soundBleep);
-    notifAudio.play();
-  }
-
   /**
    * Events
    */

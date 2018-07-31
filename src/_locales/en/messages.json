@@ -27,6 +27,9 @@
     "message": "You should be logged into your Facebook account"
   },
   "optionsSectionToolbarIconAction": {
+    "message": "Icon's action"
+  },
+  "optionsToolbarIconAction": {
     "message": "What page to open?"
   },
   "optionsSelectIfNotif": {
