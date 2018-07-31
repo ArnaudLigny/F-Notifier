@@ -14,8 +14,14 @@
       }
     }
   },
-  "browserActionNoNotifTitle": {
-    "message": "0 Facebook notification"
+  "browserAction01NotifTitle": {
+    "message": "$count$ Facebook notification",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "browserActionErrorTitle": {
     "message": "You should be logged into your Facebook account"
