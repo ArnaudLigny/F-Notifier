@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title data-message="extName">Notificateur Facebook</title>
+  <title data-message="extName">F-Notifier</title>
   <style>
     html {
       font-family: sans-serif;
@@ -36,36 +36,36 @@
   </style>
 </head>
 <body>
-  <fieldset>
-    <legend data-message="optionsSectionToolbarIconAction">What page to open?</legend>
-    <ul>
-      <li><div class="select">
-        <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
-        <select id="landingPage" name="landingPage">
-          <option value="home" data-message="optionsSelectOptionHome">Home</option>
-          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
-        </select>
-      </div></li>
-      <li><div class="select">
-        <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
-        <select id="landingPageIfNotif" name="landingPageIfNotif">
-          <option value="home" data-message="optionsSelectOptionHome">Home</option>
-          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
-        </select>
-      </div></li>
-    </ul>
-  </fieldset>
-  <fieldset>
+  <h2 data-message="optionsSectionToolbarIconAction">Extension's icon action</h2>
+  <p data-message="optionsToolbarIconAction">What page to open?</p>
+  <ul>
+    <li><div class="select">
+      <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
+      <select id="landingPage" name="landingPage">
+        <option value="home" data-message="optionsSelectOptionHome">Home</option>
+        <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+      </select>
+    </div></li>
+    <li><div class="select">
+      <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
+      <select id="landingPageIfNotif" name="landingPageIfNotif">
+        <option value="home" data-message="optionsSelectOptionHome">Home</option>
+        <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+      </select>
+    </div></li>
+  </ul>
+  <h2>Notification</h2>
   <div class="checkbox">
     <label>
       <input type="checkbox" id="isSound">
       <span data-message="optionsCheckboxSound">Play sound</span>
     </label>
   </div>
-  </fieldset>
+  <hr>
   <div class="footer">
     <a target="_blank" href="https://github.com/Narno/F-Notifier" data-message="optionsAbout">About</a>
   </div>
+  <script src="common.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

@@ -14,13 +14,22 @@
       }
     }
   },
-  "browserActionNoNotifTitle": {
-    "message": "0 notification Facebook"
+  "browserAction01NotifTitle": {
+    "message": "$count$ notification Facebook",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
   },
   "browserActionErrorTitle": {
     "message": "Vous devez être connecté à votre compte Facebook"
   },
   "optionsSectionToolbarIconAction": {
+    "message": "Action de l'icon"
+  },
+  "optionsToolbarIconAction": {
     "message": "Quelle page ouvrir ?"
   },
   "optionsSelectIfNotif": {

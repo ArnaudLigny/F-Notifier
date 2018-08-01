@@ -1,3 +1,5 @@
+/* global playSound */
+
 (function () {
   'use strict';
 
@@ -52,6 +54,9 @@
     });
     document.getElementById('isSound').addEventListener('change', () => {
       saveOptions();
+      if (inputIsSound.checked === true) {
+        playSound();
+      }
     });
   });
 })();
