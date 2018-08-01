@@ -1,3 +1,5 @@
+/* global playSound */
+
 (function () {
   'use strict';
 
