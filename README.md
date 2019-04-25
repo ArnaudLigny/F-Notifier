@@ -16,4 +16,4 @@ npm run build
 
 F-Notifier is a free software distributed under the terms of the MIT license.
 
-© 2014-2018 [Arnaud Ligny](https://arnaudligny.fr)  
+© [Arnaud Ligny](https://arnaudligny.fr)  
