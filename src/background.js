@@ -21,7 +21,7 @@
 
     window.fetch(FETCH_URL, {
       credentials: 'include',
-      mode: 'no-cors',
+      mode: 'no-cors'
     })
       .then(response => {
         if (response.ok) {
