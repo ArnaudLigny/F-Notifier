@@ -22,7 +22,8 @@
   "permissions": [
     "alarms",
     "tabs",
-    "https://www.facebook.com/"
+    "https://www.facebook.com/",
+    "https://m.facebook.com/"
   ],
   "browser_action": {
     "default_icon": {

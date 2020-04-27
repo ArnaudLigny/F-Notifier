@@ -7,6 +7,7 @@
    * Config
    */
 
+  const FETCH_URL = 'https://m.facebook.com/';
   const HOME_URL = 'https://www.facebook.com/';
   const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
 
@@ -18,8 +19,9 @@
   const notificationsCount = callback => {
     const parser = new DOMParser();
 
-    window.fetch(HOME_URL, {
-      credentials: 'include'
+    window.fetch(FETCH_URL, {
+      credentials: 'include',
+      mode: 'no-cors',
     })
       .then(response => {
         if (response.ok) {
@@ -30,9 +32,9 @@
       })
       .then(data => {
         const tmpDom = parser.parseFromString(data, 'text/html');
-        const countNotifElem = tmpDom.querySelector('#notificationsCountValue');
-        const countMessElem = tmpDom.querySelector('#mercurymessagesCountValue');
-        const countReqElem = tmpDom.querySelector('#requestsCountValue');
+        const countNotifElem = tmpDom.querySelector('#u_0_g > div > div > span');
+        const countMessElem = tmpDom.querySelector('#u_0_e > div > div > span');
+        const countReqElem = tmpDom.querySelector('#u_0_d > div > div > span');
         if (countNotifElem && countMessElem && countReqElem) {
           const count = parseInt(countNotifElem.textContent, 10) + parseInt(countMessElem.textContent, 10) + parseInt(countReqElem.textContent, 10);
 
