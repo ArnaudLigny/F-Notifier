@@ -42,13 +42,13 @@
         const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
         const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
         if (countNotifElem) {
-          count = count + parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
+          count += parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
         }
         if (countMessElem) {
-          count = count + parseInt(countMessElem.textContent.replace(/[{()}]/g, ''), 10);
+          count += parseInt(countMessElem.textContent.replace(/[{()}]/g, ''), 10);
         }
         if (countReqElem) {
-          count = count + parseInt(countReqElem.textContent.replace(/[{()}]/g, ''), 10);
+          count += parseInt(countReqElem.textContent.replace(/[{()}]/g, ''), 10);
         }
 
         callback(count);
