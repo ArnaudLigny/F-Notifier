@@ -7,7 +7,7 @@
    * Config
    */
 
-  const FETCH_URL = 'https://m.facebook.com/';
+  const FETCH_URL = 'https://mbasic.facebook.com/';
   const HOME_URL = 'https://www.facebook.com/';
   const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
 
@@ -31,17 +31,27 @@
         throw new Error('Network response was not OK.');
       })
       .then(data => {
+        let count = 0;
         const tmpDom = parser.parseFromString(data, 'text/html');
-        const countNotifElem = tmpDom.querySelector('#u_0_g > div > div > span');
-        const countMessElem = tmpDom.querySelector('#u_0_e > div > div > span');
-        const countReqElem = tmpDom.querySelector('#u_0_d > div > div > span');
-        if (countNotifElem && countMessElem && countReqElem) {
-          const count = parseInt(countNotifElem.textContent, 10) + parseInt(countMessElem.textContent, 10) + parseInt(countReqElem.textContent, 10);
 
-          callback(count);
-        } else {
-          throw new Error('Unable to parse the response.');
+        if (!tmpDom.querySelector('#header > nav > a:nth-child(4)')) {
+          throw new Error('User not connected.');
         }
+
+        const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
+        const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
+        const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
+        if (countNotifElem) {
+          count = count + parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
+        }
+        if (countMessElem) {
+          count = count + parseInt(countMessElem.textContent.replace(/[{()}]/g, ''), 10);
+        }
+        if (countReqElem) {
+          count = count + parseInt(countReqElem.textContent.replace(/[{()}]/g, ''), 10);
+        }
+
+        callback(count);
       })
       .catch(callback);
   };
