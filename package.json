@@ -21,6 +21,7 @@
     "release": "npm run build && npm run release:cws && npm run release:amo"
   },
   "devDependencies": {
+    "acorn": ">=5.7.4",
     "chrome-webstore-upload-cli": "^1.2",
     "del": "^5.1",
     "fancy-log": "^1.3",
