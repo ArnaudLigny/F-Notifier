@@ -2,4 +2,6 @@ build
 dist
 certs
 node_modules
-docs-source/.phpoole/*
+
+.cecil
+_site/
