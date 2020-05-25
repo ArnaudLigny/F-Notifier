@@ -1,6 +1,6 @@
 title: F-Notifier
 content:
-  dir: ./
+  dir: .
 static:
   dir: docs
   target: docs
