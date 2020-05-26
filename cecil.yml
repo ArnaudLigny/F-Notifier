@@ -1,4 +1,5 @@
 title: F-Notifier
+description: "Browser extension that displays your Facebook notifications unread count."
 content:
   dir: .
 static:
