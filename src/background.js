@@ -34,7 +34,7 @@
         let count = 0;
         let xpath = '#header > nav';
         const tmpDom = parser.parseFromString(data, 'text/html');
-        if (!tmpDom.querySelector(xpath +' > a:nth-child(4)')) {
+        if (!tmpDom.querySelector(xpath + ' > a:nth-child(4)')) {
           xpath = '#header > div';
           if (!tmpDom.querySelector(xpath + ' > a:nth-child(4)')) {
             throw new Error('User not connected');
