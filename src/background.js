@@ -28,19 +28,22 @@
           return response.text();
         }
 
-        throw new Error('Network response was not OK.');
+        throw new Error('Network response was not OK');
       })
       .then(data => {
         let count = 0;
+        let xpath = '#header > nav';
         const tmpDom = parser.parseFromString(data, 'text/html');
-
-        if (!tmpDom.querySelector('#header > nav > a:nth-child(4)')) {
-          throw new Error('User not connected.');
+        if (!tmpDom.querySelector(xpath +' > a:nth-child(4)')) {
+          xpath = '#header > div';
+          if (!tmpDom.querySelector(xpath + ' > a:nth-child(4)')) {
+            throw new Error('User not connected');
+          }
         }
 
-        const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
-        const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
-        const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
+        const countNotifElem = tmpDom.querySelector(xpath + ' > a:nth-child(4) > strong > span');
+        const countMessElem = tmpDom.querySelector(xpath + ' > a:nth-child(3) > strong > span');
+        const countReqElem = tmpDom.querySelector(xpath + ' > a:nth-child(6) > strong > span');
         if (countNotifElem) {
           count += parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
         }
@@ -63,24 +66,25 @@
         render(
           '?',
           [190, 190, 190, 255],
-          chrome.i18n.getMessage('browserActionErrorTitle')
+          chrome.i18n.getMessage('browserActionErrorTitle').concat(', ', count.message)
         );
-      } else {
-        render(
-          count > 0 ? count.toString() : '',
-          [208, 0, 24, 255],
-          count > 1 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserAction01NotifTitle', count.toString())
-        );
-        // Play sound?
-        if (
-          localStorage.getItem('isSound') === 'true' &&
-          (count > parseInt(localStorage.getItem('count'), 10) ||
-            localStorage.getItem('count') === null)
-        ) {
-          playSound();
-        }
-        localStorage.setItem('count', count);
+
+        return;
       }
+      render(
+        count > 0 ? count.toString() : '',
+        [208, 0, 24, 255],
+        count > 1 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserAction01NotifTitle', count.toString())
+      );
+      // Play sound?
+      if (
+        localStorage.getItem('isSound') === 'true' &&
+        (count > parseInt(localStorage.getItem('count'), 10) ||
+          localStorage.getItem('count') === null)
+      ) {
+        playSound();
+      }
+      localStorage.setItem('count', count);
     });
   }
 
