@@ -2,7 +2,7 @@
 
 > F-Notifier is a browser extension that displays your [Facebook](https://www.facebook.com) notifications unread count.
 
-[![F-Notifier available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/facebook-notifier/befpdcighpikpkklmfonkmdafmfnnkfn)  [![F-Notifier available in Mozilla Add-ons](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/f-notifier/)  [<img src="https://dev.opera.com/extensions/branding-guidelines/addons_206x58_en@2x.png" alt="Get F-Notifier from Opera add-ons" width="206px"/>](https://addons.opera.com/fr/extensions/details/f-notifier/)
+[![F-Notifier available in the Chrome Web Store](docs/ChromeWebStoreBadgeWBorder.png)](https://chrome.google.com/webstore/detail/facebook-notifier/befpdcighpikpkklmfonkmdafmfnnkfn)  [![F-Notifier available in Mozilla Add-ons](docs/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/f-notifier/)  [![Get F-Notifier from Opera add-ons](docs/addons_206x58_en.png)](https://addons.opera.com/fr/extensions/details/f-notifier/)
 
 ## Preview
 
