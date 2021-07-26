@@ -4,8 +4,6 @@
 
 [![F-Notifier available in the Chrome Web Store](docs/ChromeWebStoreBadgeWBorder.png)](https://chrome.google.com/webstore/detail/facebook-notifier/befpdcighpikpkklmfonkmdafmfnnkfn)  [![F-Notifier available in Mozilla Add-ons](docs/AMO-button_1.png)](https://addons.mozilla.org/fr/firefox/addon/f-notifier/)  [![Get F-Notifier from Opera add-ons](docs/addons_206x58_en.png)](https://addons.opera.com/fr/extensions/details/f-notifier/)
 
-Source: [github.com/Narno/F-Notifier](https://github.com/Narno/F-Notifier).
-
 ## Preview
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
@@ -42,8 +40,12 @@ Actions:
 npm run release
 ```
 
+## Source
+
+https://github.com/Narno/F-Notifier
+
 ## License
 
-F-Notifier is a free software distributed under the terms of the MIT license.
+_F-Notifier_ is a free software distributed under the terms of the [MIT license](https://opensource.org/licenses/MIT).
 
 © [Arnaud Ligny](https://arnaudligny.fr)
