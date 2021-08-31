@@ -6,6 +6,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const inputLandingPage = document.getElementById('landingPage');
     const inputLandingPageIfNotif = document.getElementById('landingPageIfNotif');
+    const inputIsFriendsReq = document.getElementById('isFriendsReq');
     const inputIsSound = document.getElementById('isSound');
 
     // Apply translations
@@ -31,6 +32,11 @@
       if (localStorage.getItem('landingPageIfNotif') === null) {
         inputLandingPageIfNotif.value = 'notifications';
       }
+      // Friends requests
+      inputIsFriendsReq.checked = false;
+      if (localStorage.getItem('isFriendsReq') === 'true') {
+        inputIsFriendsReq.checked = true;
+      }
       // Sound
       inputIsSound.checked = false;
       if (localStorage.getItem('isSound') === 'true') {
@@ -43,6 +49,7 @@
     function saveOptions() {
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
+      localStorage.setItem('isFriendsReq', inputIsFriendsReq.checked);
       localStorage.setItem('isSound', inputIsSound.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
@@ -50,6 +57,9 @@
       saveOptions();
     });
     document.getElementById('landingPageIfNotif').addEventListener('change', () => {
+      saveOptions();
+    });
+    document.getElementById('isFriendsReq').addEventListener('change', () => {
       saveOptions();
     });
     document.getElementById('isSound').addEventListener('change', () => {

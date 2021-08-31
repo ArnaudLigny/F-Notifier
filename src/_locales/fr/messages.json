@@ -44,6 +44,9 @@
   "optionsSelectOptionNotifications": {
     "message": "Notifications"
   },
+  "optionsCheckboxFriendsReq": {
+    "message": "Compter les demandes d'amis"
+  },
   "optionsCheckboxSound": {
     "message": "Émettre un son lorsque vous avez une nouvelle notification"
   },
