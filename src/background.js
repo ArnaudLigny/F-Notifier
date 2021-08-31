@@ -37,36 +37,32 @@
       })
       .then(data => {
         let count = 0;
+        let currentBrowser = 'chrome';
         const tmpDom = parser.parseFromString(data, 'text/html');
 
-        if (!tmpDom.querySelector('#header > nav > a:nth-child(3)')) {
-          const browser = 'edge';
-          if (!tmpDom.querySelector('#header > div > a:nth-child(3)')) {
+        // Debug
+        console.log(tmpDom);
+
+        if (tmpDom.querySelector('#header > nav > a:nth-child(3)') === null) {
+          currentBrowser = 'edge';
+          if (tmpDom.querySelector('#header > div > a:nth-child(3)') === null) {
             throw new Error('User not connected.');
           }
         }
 
-        const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
-        /* eslint no-unused-vars: "warn" */
-        if (browser == 'edge') {
-          const countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(4) > strong');
+        let countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
+        if (currentBrowser === 'edge') {
+          countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong');
         }
-        const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
-        if (browser == 'edge') {
-          const countMessElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong');
-        }
-        const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
-        if (browser == 'edge') {
-          const countReqElem = tmpDom.querySelector('#header > div > a:nth-child(6) > strong');
+        let countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > span');
+        if (currentBrowser === 'edge') {
+          countReqElem = tmpDom.querySelector('#header > div > a:nth-child(4)');
         }
         if (countNotifElem) {
-          count += parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
+          count += parseInt(countNotifElem.textContent.match(/(\d+)/g)[0], 10);
         }
-        if (countMessElem) {
-          count += parseInt(countMessElem.textContent.replace(/[{()}]/g, ''), 10);
-        }
-        if (countReqElem) {
-          count += parseInt(countReqElem.textContent.replace(/[{()}]/g, ''), 10);
+        if (countReqElem && localStorage.getItem('isFriendsReq') === 'true') {
+          count += parseInt(countReqElem.textContent.match(/(\d+)/g)[0], 10);
         }
 
         callback(count);
