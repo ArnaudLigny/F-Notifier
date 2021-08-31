@@ -18,10 +18,15 @@
   // Notifications count function
   const notificationsCount = callback => {
     const parser = new DOMParser();
+    const headers = new Headers({
+      "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1"
+    });
 
     window.fetch(FETCH_URL, {
-      credentials: 'include',
-      mode: 'no-cors'
+      method: 'GET',
+      headers: headers,
+      cache: 'no-cache',
+      credentials: 'include'
     })
       .then(response => {
         if (response.ok) {
@@ -34,13 +39,24 @@
         let count = 0;
         const tmpDom = parser.parseFromString(data, 'text/html');
 
-        if (!tmpDom.querySelector('#header > nav > a:nth-child(4)')) {
-          throw new Error('User not connected.');
+        if (!tmpDom.querySelector('#header > nav > a:nth-child(3)')) {
+          if (!tmpDom.querySelector('#header > div > a:nth-child(3)')) {
+            throw new Error('User not connected.');
+          }
         }
 
         const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
+        if (!countNotifElem) {
+          const countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(4) > strong > span');
+        }
         const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
+        if (!countMessElem) {
+          const countMessElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong > span');
+        }
         const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
+        if (!countReqElem) {
+          const countReqElem = tmpDom.querySelector('#header > div > a:nth-child(6) > strong > span');
+        }
         if (countNotifElem) {
           count += parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
         }
