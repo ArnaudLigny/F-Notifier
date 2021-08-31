@@ -19,12 +19,12 @@
   const notificationsCount = callback => {
     const parser = new DOMParser();
     const headers = new Headers({
-      "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1"
+      'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1'
     });
 
     window.fetch(FETCH_URL, {
       method: 'GET',
-      headers: headers,
+      headers,
       cache: 'no-cache',
       credentials: 'include'
     })
@@ -46,15 +46,16 @@
         }
 
         const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
-        if (!countNotifElem) {
+        /* eslint no-unused-vars: "warn" */
+        if (countNotifElem === null) {
           const countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(4) > strong > span');
         }
         const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
-        if (!countMessElem) {
+        if (countMessElem === null) {
           const countMessElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong > span');
         }
         const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
-        if (!countReqElem) {
+        if (countReqElem === null) {
           const countReqElem = tmpDom.querySelector('#header > div > a:nth-child(6) > strong > span');
         }
         if (countNotifElem) {
