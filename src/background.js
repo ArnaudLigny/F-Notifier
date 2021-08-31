@@ -40,6 +40,7 @@
         const tmpDom = parser.parseFromString(data, 'text/html');
 
         if (!tmpDom.querySelector('#header > nav > a:nth-child(3)')) {
+          const browser = 'edge';
           if (!tmpDom.querySelector('#header > div > a:nth-child(3)')) {
             throw new Error('User not connected.');
           }
@@ -47,16 +48,16 @@
 
         const countNotifElem = tmpDom.querySelector('#header > nav > a:nth-child(4) > strong > span');
         /* eslint no-unused-vars: "warn" */
-        if (countNotifElem === null) {
-          const countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(4) > strong > span');
+        if (browser == 'edge') {
+          const countNotifElem = tmpDom.querySelector('#header > div > a:nth-child(4) > strong');
         }
         const countMessElem = tmpDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
-        if (countMessElem === null) {
-          const countMessElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong > span');
+        if (browser == 'edge') {
+          const countMessElem = tmpDom.querySelector('#header > div > a:nth-child(3) > strong');
         }
         const countReqElem = tmpDom.querySelector('#header > nav > a:nth-child(6) > strong > span');
-        if (countReqElem === null) {
-          const countReqElem = tmpDom.querySelector('#header > div > a:nth-child(6) > strong > span');
+        if (browser == 'edge') {
+          const countReqElem = tmpDom.querySelector('#header > div > a:nth-child(6) > strong');
         }
         if (countNotifElem) {
           count += parseInt(countNotifElem.textContent.replace(/[{()}]/g, ''), 10);
