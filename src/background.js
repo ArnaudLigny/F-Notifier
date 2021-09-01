@@ -37,7 +37,7 @@ const notificationsCount = callback => {
         return response.text();
       }
 
-      throw new Error('Network response was not OK.');
+      throw new Error('Network response was not OK');
     })
     .then(data => {
       let count = 0;
@@ -84,23 +84,24 @@ function updateBadge() {
         [190, 190, 190, 255],
         chrome.i18n.getMessage('browserActionErrorTitle'),
       );
-    } else {
-      render(
-        count > 0 ? count.toString() : '',
-        [208, 0, 24, 255],
-        count > 1 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserAction01NotifTitle', count.toString()),
-      );
-      // Play sound?
-      if (
-        localStorage.getItem('isSound') === 'true'
-        && (count > Number.parseInt(localStorage.getItem('count'), 10)
-        || localStorage.getItem('count') === null)
-      ) {
-        playSound();
-      }
 
-      localStorage.setItem('count', count);
+      return;
     }
+
+    render(
+      count > 0 ? count.toString() : '',
+      [208, 0, 24, 255],
+      count > 1 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserAction01NotifTitle', count.toString()),
+    );
+    // Play sound?
+    if (localStorage.getItem('isSound') === 'true'
+      && (count > Number.parseInt(localStorage.getItem('count'), 10)
+      || localStorage.getItem('count') === null)
+    ) {
+      playSound();
+    }
+
+    localStorage.setItem('count', count);
   });
 }
 
