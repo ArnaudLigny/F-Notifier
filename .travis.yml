@@ -1,20 +1,22 @@
 sudo: false
 language: node_js
 node_js:
-  - '8'
+  - '14'
 env:
   - EXTENSION_ID=befpdcighpikpkklmfonkmdafmfnnkfn
 deploy:
+  # Web stores
   - provider: script
-    skip_cleanup: true
+    edge: true
     script: npm run release
     on:
       branch: master
       tags: true
+  # GitHub release
   - provider: releases
-    skip_cleanup: true
+    edge: true
     overwrite: true
-    api_key: $GH_TOKEN
+    token: $GH_TOKEN
     file_glob: true
     file: "dist/*"
     on:
