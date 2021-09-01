@@ -18,7 +18,7 @@ npm install
 
 ### Test
 
-[![Build Status](https://www.travis-ci.com/Narno/F-Notifier.svg?branch=master)](https://www.travis-ci.com/Narno/F-Notifier)
+[![Build Status](https://api.travis-ci.com/Narno/F-Notifier.svg?branch=master)](https://app.travis-ci.com/github/Narno/F-Notifier)
 
 ```bash
 npm run test
