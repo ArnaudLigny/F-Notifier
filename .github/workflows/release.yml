@@ -38,8 +38,6 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    outputs:
-      publish_status: ${{ steps.publish-chrome.outputs.publish_status }}
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
@@ -59,7 +57,6 @@ jobs:
 
       - name: Publish
         id: publish-chrome
-        continue-on-error: true
         run: |
           npm run release:cws
           echo "::set-output name=publish_status::${?}"
@@ -73,8 +70,6 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    outputs:
-      publish_status: ${{ steps.publish-firefox.outputs.publish_status }}
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
@@ -94,23 +89,9 @@ jobs:
 
       - name: Publish
         id: publish-firefox
-        continue-on-error: true
         run: |
           npm run release:amo
           echo "::set-output name=publish_status::${?}"
         env:
           WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
-
-  statuses:
-    name: Checks statuses
-    needs:
-      - publish_chrome
-      - publish_firefox
-    runs-on: ubuntu-latest
-    steps:
-      - name: Publish statuses
-        run: |
-          echo "::warning::Chrome publish status: $([[ "${{ needs.publish_chrome.outputs.publish_status }}" = "0" ]] && echo 'SUCCESS' || echo 'FAILED')"
-          echo "::warning::Firefox publish status: $([[ "${{ needs.publish_firefox.outputs.publish_status }}" = "0" ]] && echo 'SUCCESS' || echo 'FAILED')"
-          [["${{ needs.publish_chrome.outputs.publish_status }}" != "0" && "${{ needs.publish_firefox.outputs.publish_status }} != "0"]]; then exit 1; fi
