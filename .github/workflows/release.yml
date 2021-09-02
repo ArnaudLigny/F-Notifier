@@ -57,7 +57,7 @@ jobs:
           name: build
           path: build
 
-      - name: Upload
+      - name: Publish
         id: publish-chrome
         continue-on-error: true
         run: |
@@ -92,7 +92,7 @@ jobs:
           name: build
           path: build
 
-      - name: Upload
+      - name: Publish
         id: publish-firefox
         continue-on-error: true
         run: |
