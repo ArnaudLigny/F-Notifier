@@ -27,16 +27,21 @@ jobs:
     - name: Run build
       run: npm run build
 
-    - name: Upload artifact
+    - name: Upload build artifact
       uses: actions/upload-artifact@v2
       with:
         name: build
         path: build
 
-  publish_chrome:
+    - name: Upload dist artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
+
+  publish_to_chrome:
     name: Publish to Chrome Web Store
-    needs:
-    - build
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
@@ -49,7 +54,7 @@ jobs:
     - name: Install packages
       run: npm install
 
-    - name: Download artifact
+    - name: Download build artifact
       uses: actions/download-artifact@v2
       with:
         name: build
@@ -57,18 +62,15 @@ jobs:
 
     - name: Publish
       id: publish-chrome
-      run: |
-        npm run release:cws
-        echo "::set-output name=publish_status::${?}"
+      run: npm run release:cws
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
-  publish_firefox:
+  publish_to_firefox:
     name: Publish to Firefox Add-ons
-    needs:
-    - build
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
@@ -81,7 +83,7 @@ jobs:
     - name: Install packages
       run: npm install
 
-    - name: Download artifact
+    - name: Download build artifact
       uses: actions/download-artifact@v2
       with:
         name: build
@@ -89,9 +91,27 @@ jobs:
 
     - name: Publish
       id: publish-firefox
-      run: |
-        npm run release:amo
-        echo "::set-output name=publish_status::${?}"
+      run: npm run release:amo
       env:
         WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
         WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
+
+  publish_to_github:
+    name: Publish to GitHub
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download dist artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: dist
+        path: dist
+
+    - name: Add artifact to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/*
+        tag: ${{ github.ref }}
+        file_glob: true
