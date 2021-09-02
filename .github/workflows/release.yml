@@ -1,0 +1,67 @@
+name: Release extension
+
+env:
+  EXTENSION_ID: 'befpdcighpikpkklmfonkmdafmfnnkfn'
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build extension
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install packages
+      run: npm install
+
+    - name: Run build
+      run: npm run build
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
+
+  publish_chrome:
+    name: Publish to Chrome Web Store
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    outputs:
+      publish_status: ${{ steps.publish-chrome.outputs.publish_status }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+
+      - name: Upload
+        id: publish-chrome
+        continue-on-error: true
+        run: |
+          npm run release:cws
+          echo "::set-output name=publish_status::${?}"
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+
+  post_run:
+    runs-on: ubuntu-latest
+    needs:
+      - publish_chrome
+    steps:
+      - name: Publish statuses
+        run: |
+          echo "::warning::Chrome publish status: $([[ "${{ needs.publish_chrome.outputs.publish_status }}" = "0" ]] && echo 'SUCCESS' || echo 'FAILED')"
