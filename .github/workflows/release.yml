@@ -57,10 +57,11 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
-  post_run:
-    runs-on: ubuntu-latest
+  statuses:
+    name: Checks statuses
     needs:
       - publish_chrome
+    runs-on: ubuntu-latest
     steps:
       - name: Publish statuses
         run: |
