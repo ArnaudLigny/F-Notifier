@@ -77,3 +77,4 @@ jobs:
       - name: Publish statuses
         run: |
           echo "::warning::Chrome publish status: $([[ "${{ needs.publish_chrome.outputs.publish_status }}" = "0" ]] && echo 'SUCCESS' || echo 'FAILED')"
+          [["${{ needs.publish_chrome.outputs.publish_status }}" != "0" && "${{ needs.publish_chrome.outputs.publish_status }} != "0"]]; then exit 1; fi
