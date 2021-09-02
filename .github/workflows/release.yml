@@ -6,7 +6,7 @@ env:
 on:
   release:
     types:
-      - published
+    - published
   workflow_dispatch:
 
 jobs:
@@ -14,84 +14,84 @@ jobs:
     name: Build extension
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
+    - name: Checkout source
+      uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
 
-      - name: Install packages
-        run: npm install
+    - name: Install packages
+      run: npm install
 
-      - name: Run build
-        run: npm run build
+    - name: Run build
+      run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build
 
   publish_chrome:
     name: Publish to Chrome Web Store
     needs:
-      - build
+    - build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
+    - name: Checkout source
+      uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
 
-      - name: Install packages
-        run: npm install
+    - name: Install packages
+      run: npm install
 
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+        path: build
 
-      - name: Publish
-        id: publish-chrome
-        run: |
-          npm run release:cws
-          echo "::set-output name=publish_status::${?}"
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+    - name: Publish
+      id: publish-chrome
+      run: |
+        npm run release:cws
+        echo "::set-output name=publish_status::${?}"
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
 
   publish_firefox:
     name: Publish to Firefox Add-ons
     needs:
-      - build
+    - build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
+    - name: Checkout source
+      uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
 
-      - name: Install packages
-        run: npm install
+    - name: Install packages
+      run: npm install
 
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+        path: build
 
-      - name: Publish
-        id: publish-firefox
-        run: |
-          npm run release:amo
-          echo "::set-output name=publish_status::${?}"
-        env:
-          WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
-          WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
+    - name: Publish
+      id: publish-firefox
+      run: |
+        npm run release:amo
+        echo "::set-output name=publish_status::${?}"
+      env:
+        WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
+        WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
