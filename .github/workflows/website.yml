@@ -20,8 +20,6 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
     - name: Install theme(s)
       run: |
         if [[ -f "composer.json" ]]; then
