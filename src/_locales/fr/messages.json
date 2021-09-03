@@ -5,7 +5,7 @@
   "extDescription": {
     "message": "Affiche le nombre de notifications Facebook non lus."
   },
-  "browserActionNotifTitle": {
+  "actionNotifTitle": {
     "message": "$count$ notifications Facebook",
     "placeholders": {
       "count": {
@@ -14,7 +14,7 @@
       }
     }
   },
-  "browserAction01NotifTitle": {
+  "action01NotifTitle": {
     "message": "$count$ notification Facebook",
     "placeholders": {
       "count": {
@@ -23,13 +23,13 @@
       }
     }
   },
-  "browserActionErrorTitle": {
+  "actionErrorTitle": {
     "message": "Vous devez être connecté à votre compte Facebook"
   },
-  "optionsSectionToolbarIconAction": {
+  "optionsSectionAction": {
     "message": "Action de l’icône"
   },
-  "optionsToolbarIconAction": {
+  "optionsAction": {
     "message": "Quelle page ouvrir ?"
   },
   "optionsSelectIfNotif": {
@@ -44,6 +44,9 @@
   "optionsSelectOptionNotifications": {
     "message": "Notifications"
   },
+  "optionsSectionNotifications": {
+    "message": "Notifications"
+  },
   "optionsCheckboxFriendsReq": {
     "message": "Compter les nouvelles demandes d’amis"
   },
@@ -52,5 +55,11 @@
   },
   "optionsAbout": {
     "message": "À propos"
+  },
+  "optionsSectionMisc": {
+    "message": "Divers"
+  },
+  "optionsCheckboxShowUpdates": {
+    "message": "M’afficher les mises à jour"
   }
 }

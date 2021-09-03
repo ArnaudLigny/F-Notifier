@@ -3,12 +3,6 @@
 <head>
   <title data-message="extName">F-Notifier</title>
   <style>
-    html {
-      font-family: sans-serif;
-    }
-    ul {
-      -webkit-padding-start: 20px;
-    }
     li {
       margin: 0.65em 0;
     }
@@ -17,26 +11,13 @@
       border: 0;
       height: 1px;
     }
-    fieldset {
-      border: solid 1px #ccc;
-      border-radius: 3px;
-      padding: 4px 8px;
-      margin-bottom: 5px;
-    }
-    input[type="radio"] {
-      vertical-align: top;
-      margin-top: 3px;
-    }
-		img {
-			width: 19px;
-		}
     div.footer {
       text-align: right;
     }
   </style>
 </head>
 <body>
-  <h2>Notification</h2>
+  <h2 data-message="optionsSectionNotifications">Notifications</h2>
   <div class="checkbox">
     <label>
       <input type="checkbox" id="isFriendsReq">
@@ -49,8 +30,8 @@
       <span data-message="optionsCheckboxSound">Play sound</span>
     </label>
   </div>
-  <h2 data-message="optionsSectionToolbarIconAction">Extension's icon action</h2>
-  <p data-message="optionsToolbarIconAction">What page to open?</p>
+  <h2 data-message="optionsSectionAction">Extension’s icon action</h2>
+  <p data-message="optionsAction">What page to open?</p>
   <ul>
     <li><div class="select">
       <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
@@ -67,6 +48,13 @@
       </select>
     </div></li>
   </ul>
+  <h2 data-message="optionsSectionMisc">Misc</h2>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="isShowUpdates">
+      <span data-message="optionsCheckboxShowUpdates">Show me updates</span>
+    </label>
+  </div>
   <hr>
   <div class="footer">
     <a target="_blank" href="https://narno.dev/F-Notifier/" data-message="optionsAbout">About</a>

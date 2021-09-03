@@ -14,6 +14,7 @@
 const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
+const RELEASES_URL = 'https://github.com/Narno/F-Notifier/releases';
 
 /**
  * Main functions
@@ -70,7 +71,7 @@ function updateBadge() {
       render(
         '?',
         [190, 190, 190, 255],
-        chrome.i18n.getMessage('browserActionErrorTitle'),
+        chrome.i18n.getMessage('actionErrorTitle'),
       );
 
       return;
@@ -79,7 +80,7 @@ function updateBadge() {
     render(
       count > 0 ? count.toString() : '',
       [208, 0, 24, 255],
-      count > 1 ? chrome.i18n.getMessage('browserActionNotifTitle', count.toString()) : chrome.i18n.getMessage('browserAction01NotifTitle', count.toString()),
+      count > 1 ? chrome.i18n.getMessage('actionNotifTitle', count.toString()) : chrome.i18n.getMessage('action01NotifTitle', count.toString()),
     );
     // Play sound?
     if (localStorage.getItem('isSound') === 'true'
@@ -154,8 +155,14 @@ chrome.browserAction.onClicked.addListener(tab => {
 
 // Check whether new version is installed
 chrome.runtime.onInstalled.addListener(details => {
-  if (details.reason === 'install') {
+  if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    localStorage.setItem('isFriendsReq', true);
+    localStorage.setItem('isShowUpdates', true);
     chrome.runtime.openOptionsPage();
+  }
+
+  if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && localStorage.getItem('isShowUpdates') === 'true') {
+    chrome.tabs.create({url: RELEASES_URL});
   }
 
   updateBadge();
@@ -172,7 +179,7 @@ function handleConnectionStatus(event) {
     render(
       '?',
       [245, 159, 0, 255],
-      chrome.i18n.getMessage('browserActionErrorTitle'),
+      chrome.i18n.getMessage('actionErrorTitle'),
     );
   }
 }
