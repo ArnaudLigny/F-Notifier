@@ -11,9 +11,9 @@
  * Config
  */
 
-const FETCH_URL = 'https://mbasic.facebook.com/';
+const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
-const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
+const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 
 /**
  * Main functions
@@ -22,13 +22,8 @@ const NOTIFICATIONS_URL = 'https://www.facebook.com/notifications';
 // Notifications count function
 const notificationsCount = callback => {
   const parser = new DOMParser();
-  const headers = new Headers({
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1',
-  });
 
   window.fetch(FETCH_URL, {
-    method: 'GET',
-    headers,
     cache: 'no-cache',
     credentials: 'include',
   })
@@ -41,33 +36,26 @@ const notificationsCount = callback => {
     })
     .then(data => {
       let count = 0;
-      let currentBrowser = 'chrome';
+      const notificationsSelector = '#notifications_jewel';
+      const requestsSelector = '#requests_jewel';
+      const classSelector = '._59tg';
       const temporaryDom = parser.parseFromString(data, 'text/html');
+      const countNotifElement = temporaryDom.querySelector(notificationsSelector).querySelector(classSelector);
+      const countRequestElement = temporaryDom.querySelector(requestsSelector).querySelector(classSelector);
 
       // Debug
       console.log(temporaryDom);
+      console.log(countNotifElement);
+      console.log(countRequestElement);
 
-      if (temporaryDom.querySelector('#header > nav > a:nth-child(3)') === null) {
-        currentBrowser = 'edge';
-        if (temporaryDom.querySelector('#header > div > a:nth-child(3)') === null) {
-          throw new Error('User not connected.');
-        }
+      if (countNotifElement === null) {
+        throw new Error('User not connected.');
       }
 
-      let countNotifElement = temporaryDom.querySelector('#header > nav > a:nth-child(3) > strong > span');
-      let countRequestElement = temporaryDom.querySelector('#header > nav > a:nth-child(4) > span');
+      count += Number.parseInt(countNotifElement.textContent, 10);
 
-      if (currentBrowser === 'edge') {
-        countNotifElement = temporaryDom.querySelector('#header > div > a:nth-child(3) > strong');
-        countRequestElement = temporaryDom.querySelector('#header > div > a:nth-child(4)');
-      }
-
-      if (countNotifElement) {
-        count += Number.parseInt(countNotifElement.textContent.match(/(\d+)/g)[0], 10);
-      }
-
-      if (countRequestElement && localStorage.getItem('isFriendsReq') === 'true') {
-        count += Number.parseInt(countRequestElement.textContent.match(/(\d+)/g)[0], 10);
+      if (localStorage.getItem('isFriendsReq') === 'true') {
+        count += Number.parseInt(countRequestElement.textContent, 10);
       }
 
       callback(count);
