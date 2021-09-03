@@ -93,8 +93,8 @@ jobs:
       id: publish-firefox
       run: npm run release:amo
       env:
-        WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
-        WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
+        WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+        WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
 
   publish_to_github:
     name: Publish to GitHub
