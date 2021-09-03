@@ -5,7 +5,7 @@
   "extDescription": {
     "message": "Displays your Facebook notifications unread count."
   },
-  "browserActionNotifTitle": {
+  "actionNotifTitle": {
     "message": "$count$ Facebook notifications",
     "placeholders": {
       "count": {
@@ -14,7 +14,7 @@
       }
     }
   },
-  "browserAction01NotifTitle": {
+  "action01NotifTitle": {
     "message": "$count$ Facebook notification",
     "placeholders": {
       "count": {
@@ -23,13 +23,13 @@
       }
     }
   },
-  "browserActionErrorTitle": {
+  "actionErrorTitle": {
     "message": "You should be logged into your Facebook account"
   },
-  "optionsSectionToolbarIconAction": {
+  "optionsSectionAction": {
     "message": "Icon’s action"
   },
-  "optionsToolbarIconAction": {
+  "optionsAction": {
     "message": "What page to open?"
   },
   "optionsSelectIfNotif": {
@@ -44,6 +44,9 @@
   "optionsSelectOptionNotifications": {
     "message": "Notifications"
   },
+  "optionsSectionNotifications": {
+    "message": "Notifications"
+  },
   "optionsCheckboxFriendsReq": {
     "message": "Count friends new requests"
   },
@@ -52,5 +55,11 @@
   },
   "optionsAbout": {
     "message": "About"
+  },
+  "optionsSectionMisc": {
+    "message": "Misc"
+  },
+  "optionsCheckboxShowUpdates": {
+    "message": "Show me updates"
   }
 }

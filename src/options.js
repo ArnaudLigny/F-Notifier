@@ -8,6 +8,7 @@
     const inputLandingPageIfNotif = document.querySelector('#landingPageIfNotif');
     const inputIsFriendsRequest = document.querySelector('#isFriendsReq');
     const inputIsSound = document.querySelector('#isSound');
+    const inputIsShowUpdates = document.querySelector('#isShowUpdates');
 
     // Apply translations
     function applyTranslations() {
@@ -36,15 +37,21 @@
       }
 
       // Friends requests
-      inputIsFriendsRequest.checked = false;
-      if (localStorage.getItem('isFriendsReq') === 'true') {
-        inputIsFriendsRequest.checked = true;
+      inputIsFriendsRequest.checked = true;
+      if (localStorage.getItem('isFriendsReq') === 'false') {
+        inputIsFriendsRequest.checked = false;
       }
 
       // Sound
       inputIsSound.checked = false;
       if (localStorage.getItem('isSound') === 'true') {
         inputIsSound.checked = true;
+      }
+
+      // Show updates
+      inputIsShowUpdates.checked = true;
+      if (localStorage.getItem('isShowUpdates') === 'false') {
+        inputIsShowUpdates.checked = false;
       }
     }
 
@@ -56,6 +63,7 @@
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
       localStorage.setItem('isFriendsReq', inputIsFriendsRequest.checked);
       localStorage.setItem('isSound', inputIsSound.checked);
+      localStorage.setItem('isShowUpdates', inputIsShowUpdates.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
 
@@ -73,6 +81,9 @@
       if (inputIsSound.checked === true) {
         playSound();
       }
+    });
+    document.querySelector('#isShowUpdates').addEventListener('change', () => {
+      saveOptions();
     });
   });
 })();
