@@ -27,7 +27,7 @@
     "message": "You should be logged into your Facebook account"
   },
   "optionsSectionToolbarIconAction": {
-    "message": "Icon's action"
+    "message": "Icon’s action"
   },
   "optionsToolbarIconAction": {
     "message": "What page to open?"
@@ -45,7 +45,7 @@
     "message": "Notifications"
   },
   "optionsCheckboxFriendsReq": {
-    "message": "Count friends requests"
+    "message": "Count friends new requests"
   },
   "optionsCheckboxSound": {
     "message": "Play sound when you got a new notification"

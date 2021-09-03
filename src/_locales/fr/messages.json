@@ -27,7 +27,7 @@
     "message": "Vous devez être connecté à votre compte Facebook"
   },
   "optionsSectionToolbarIconAction": {
-    "message": "Action de l'icône"
+    "message": "Action de l’icône"
   },
   "optionsToolbarIconAction": {
     "message": "Quelle page ouvrir ?"
@@ -36,7 +36,7 @@
     "message": "Si vous avez des notifications :"
   },
   "optionsSelectIfNoNotif": {
-    "message": "Si vous n'avez pas de notifications :"
+    "message": "Si vous n’avez pas de notifications :"
   },
   "optionsSelectOptionHome": {
     "message": "Accueil"
@@ -45,7 +45,7 @@
     "message": "Notifications"
   },
   "optionsCheckboxFriendsReq": {
-    "message": "Compter les demandes d'amis"
+    "message": "Compter les nouvelles demandes d’amis"
   },
   "optionsCheckboxSound": {
     "message": "Émettre un son lorsque vous avez une nouvelle notification"
