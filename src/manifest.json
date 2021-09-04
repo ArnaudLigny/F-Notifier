@@ -1,21 +1,11 @@
 {
   "name": "__MSG_extName__",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "description": "__MSG_extDescription__",
   "homepage_url": "https://narno.dev/F-Notifier/",
   "author": "Arnaud Ligny",
-  "developer": {
-    "name": "Arnaud Ligny",
-    "url": "https://arnaudligny.fr"
-  },
   "manifest_version": 2,
   "minimum_chrome_version": "52",
-  "applications": {
-    "gecko": {
-      "id": "{3b5da596-9072-4e68-bce5-adb82ac9063a}",
-      "strict_min_version": "53.0"
-    }
-  },
   "default_locale": "en",
   "icons": {
     "128": "icon-128.png"
@@ -23,7 +13,6 @@
   "permissions": [
     "alarms",
     "tabs",
-    "https://www.facebook.com/",
     "https://m.facebook.com/"
   ],
   "background": {
