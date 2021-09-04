@@ -15,6 +15,7 @@ const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 const RELEASES_URL = 'https://github.com/Narno/F-Notifier/releases';
+const ISSUES_URL = 'https://github.com/Narno/F-Notifier/issues';
 
 /**
  * Main functions
@@ -155,15 +156,28 @@ chrome.browserAction.onClicked.addListener(tab => {
 
 // Check whether new version is installed
 chrome.runtime.onInstalled.addListener(details => {
+  // Set default options
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
     localStorage.setItem('isFriendsReq', true);
     localStorage.setItem('isShowUpdates', true);
     chrome.runtime.openOptionsPage();
   }
 
+  // Open releases details on update
   if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && localStorage.getItem('isShowUpdates') === 'true') {
     chrome.tabs.create({url: RELEASES_URL});
   }
+
+  // Open issue on uninstall
+  chrome.runtime.setUninstallURL((() => {
+    switch (chrome.i18n.getUILanguage()) {
+      case 'fr':
+        return ISSUES_URL + '/new?labels=survey&title=Mon+avis+à+propos+de+cette+extension';
+      case 'en':
+      default:
+        return ISSUES_URL + '/new?labels=survey&title=My+opinion+about+this+extension';
+    }
+  })());
 
   updateBadge();
 });
