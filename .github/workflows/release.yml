@@ -2,6 +2,7 @@ name: Release extension
 
 env:
   EXTENSION_ID: 'befpdcighpikpkklmfonkmdafmfnnkfn'
+  WEB_EXT_ID: '{3b5da596-9072-4e68-bce5-adb82ac9063a}'
 
 on:
   release:
