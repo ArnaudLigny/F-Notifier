@@ -18,7 +18,7 @@ npm install
 
 ### Test
 
-[![Build Status](https://api.travis-ci.com/Narno/F-Notifier.svg?branch=master)](https://app.travis-ci.com/github/Narno/F-Notifier)
+[![Test](https://github.com/Narno/F-Notifier/actions/workflows/test.yml/badge.svg)](https://github.com/Narno/F-Notifier/actions/workflows/test.yml)
 
 ```bash
 npm run test
@@ -36,6 +36,8 @@ Actions:
 2. create a ZIP archive from `build/` in `dist/`
 
 ### Deploy to stores
+
+[![Release extension](https://github.com/Narno/F-Notifier/actions/workflows/release.yml/badge.svg)](https://github.com/Narno/F-Notifier/actions/workflows/release.yml)
 
 ```bash
 npm run release
