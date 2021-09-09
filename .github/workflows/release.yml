@@ -1,13 +1,13 @@
 name: Release extension
 
 env:
-  EXTENSION_ID: 'befpdcighpikpkklmfonkmdafmfnnkfn'
-  WEB_EXT_ID: '{3b5da596-9072-4e68-bce5-adb82ac9063a}'
+  EXTENSION_ID: 'befpdcighpikpkklmfonkmdafmfnnkfn' # Chrome
+  WEB_EXT_ID: '{3b5da596-9072-4e68-bce5-adb82ac9063a}' # Firefox
 
 on:
   release:
     types:
-    - published
+    - published # Run when a GH release is published
 
 jobs:
   build:
@@ -61,8 +61,7 @@ jobs:
         path: build
 
     - name: Publish
-      id: publish-chrome
-      run: npm run release:cws
+      run: npm run release:cws # https://github.com/fregante/chrome-webstore-upload
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
@@ -90,8 +89,7 @@ jobs:
         path: build
 
     - name: Publish
-      id: publish-firefox
-      run: npm run release:amo
+      run: npm run release:amo # https://github.com/fregante/web-ext-submit
       env:
         WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
         WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
