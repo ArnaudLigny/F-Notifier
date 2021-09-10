@@ -8,7 +8,15 @@
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
 
+## Support
+
+<https://github.com/Narno/F-Notifier/issues>
+
 ## Development
+
+### Source
+
+<https://github.com/Narno/F-Notifier.git>
 
 ### Install
 
@@ -42,10 +50,6 @@ Actions:
 ```bash
 npm run release
 ```
-
-## Source
-
-<https://github.com/Narno/F-Notifier>
 
 ## License
 
