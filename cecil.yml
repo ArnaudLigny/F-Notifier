@@ -6,3 +6,4 @@ content:
 static:
   dir: docs
   target: docs
+image: docs/screenshot.png
