@@ -16,7 +16,7 @@
   "scripts": {
     "test": "xo",
     "build": "gulp dist",
-    "release:cws": "cd build && webstore upload --auto-publish",
+    "release:cws": "cd build && chrome-webstore-upload upload --auto-publish",
     "release:amo": "cd build && web-ext-submit",
     "release": "npm run build && npm run release:cws && npm run release:amo"
   },
