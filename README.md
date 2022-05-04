@@ -24,7 +24,7 @@ npm install
 
 ### Test
 
-[![Test](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/test.yml/badge.svg)](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/test.yml)
+<a href="https://github.com/ArnaudLigny/F-Notifier/actions/workflows/test.yml"><img src="https://github.com/ArnaudLigny/F-Notifier/actions/workflows/test.yml/badge.svg" alt="Test workflow" /></a>
 
 ```bash
 npm run test
@@ -43,7 +43,7 @@ Actions:
 
 ### Deploy to stores
 
-[![Release extension](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml/badge.svg)](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml)
+<a href="https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml"><img src="https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml/badge.svg" alt="Release workflow" /></a>
 
 ```bash
 npm run release
