@@ -43,7 +43,7 @@ Actions:
 
 ### Deploy to stores
 
-[![Release extension](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml/badge.svg)](https://github.com/Narno/F-Notifier/actions/workflows/release.yml)
+[![Release extension](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml/badge.svg)](https://github.com/ArnaudLigny/F-Notifier/actions/workflows/release.yml)
 
 ```bash
 npm run release
