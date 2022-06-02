@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title data-message="extName">F-Notifier</title>
-  <style>
-    h2 {
-      font-weight: 500;
-    }
-    label input[type="checkbox"] {
-      margin-block-start: 0.6em;
-    }
-    label span {
-      margin-left: 4px;
-    }
-    li {
-      margin: 0.65em 0;
-    }
-    hr {
-      background-color: #ddd;
-      border: 0;
-      height: 1px;
-    }
-    div.footer {
-      text-align: right;
-    }
-  </style>
-</head>
-<body>
-  <h2 data-message="optionsSectionNotifications">Notifications</h2>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="isFriendsReq">
-      <span data-message="optionsCheckboxFriendsReq">Count friends requests</span>
-    </label>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="isSound">
-      <span data-message="optionsCheckboxSound">Play sound</span>
-    </label>
-  </div>
-  <h2 data-message="optionsSectionAction">Extension’s icon action</h2>
-  <p data-message="optionsAction">What page to open?</p>
-  <ul>
-    <li><div class="select">
-      <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
-      <select id="landingPageIfNotif" name="landingPageIfNotif">
-        <option value="home" data-message="optionsSelectOptionHome">Home</option>
-        <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
-      </select>
-    </div></li>
-    <li><div class="select">
-      <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
-      <select id="landingPage" name="landingPage">
-        <option value="home" data-message="optionsSelectOptionHome">Home</option>
-        <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
-      </select>
-    </div></li>
-  </ul>
-  <h2 data-message="optionsSectionMisc">Misc</h2>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="isShowUpdates">
-      <span data-message="optionsCheckboxShowUpdates">Show me updates</span>
-    </label>
-  </div>
-  <hr>
-  <div class="footer">
-    <a target="_blank" href="https://dev.ligny.org/F-Notifier" data-message="optionsAbout">About</a>
-  </div>
-  <script src="common.js"></script>
-  <script src="options.js"></script>
-</body>
+  <head>
+    <title data-message="extName">F-Notifier</title>
+    <style>
+      h2 {
+        font-weight: 500;
+      }
+      label input[type="checkbox"] {
+        margin-block-start: 0.6em;
+      }
+      label span {
+        margin-left: 4px;
+      }
+      li {
+        margin: 0.65em 0;
+      }
+      hr {
+        background-color: #ddd;
+        border: 0;
+        height: 1px;
+      }
+      div.footer {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 data-message="optionsSectionNotifications">Notifications</h2>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="isFriendsReq">
+        <span data-message="optionsCheckboxFriendsReq">Count friends requests</span>
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="isSound">
+        <span data-message="optionsCheckboxSound">Play sound</span>
+      </label>
+    </div>
+    <h2 data-message="optionsSectionAction">Extension’s icon action</h2>
+    <p data-message="optionsAction">What page to open?</p>
+    <ul>
+      <li><div class="select">
+        <span data-message="optionsSelectIfNotif">If you got new notifications:</span>
+        <select id="landingPageIfNotif" name="landingPageIfNotif">
+          <option value="home" data-message="optionsSelectOptionHome">Home</option>
+          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+        </select>
+      </div></li>
+      <li><div class="select">
+        <span data-message="optionsSelectIfNoNotif">If you do not have a new notifications:</span>
+        <select id="landingPage" name="landingPage">
+          <option value="home" data-message="optionsSelectOptionHome">Home</option>
+          <option value="notifications" data-message="optionsSelectOptionNotifications">Notifications</option>
+        </select>
+      </div></li>
+    </ul>
+    <h2 data-message="optionsSectionMisc">Misc</h2>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="isShowUpdates">
+        <span data-message="optionsCheckboxShowUpdates">Show me updates</span>
+      </label>
+    </div>
+    <hr>
+    <div class="footer">
+      <a target="_blank" href="https://dev.ligny.org/F-Notifier" data-message="optionsAbout">About</a>
+    </div>
+    <script src="common.js"></script>
+    <script src="options.js"></script>
+  </body>
 </html>
