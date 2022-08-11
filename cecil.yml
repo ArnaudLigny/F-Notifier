@@ -2,7 +2,7 @@ title: F-Notifier
 baseline: "Browser extension"
 description: "Browser extension that displays your Facebook notifications unread count."
 baseurl: https://dev.ligny.org/F-Notifier/
-content:
+pages:
   dir: .
 static:
   dir: docs
