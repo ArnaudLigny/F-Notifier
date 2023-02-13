@@ -14,8 +14,8 @@
 const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
-const RELEASES_URL = 'https://github.com/Narno/F-Notifier/releases';
-const ISSUES_URL = 'https://github.com/Narno/F-Notifier/issues';
+const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases';
+const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues';
 
 /**
  * Main functions
