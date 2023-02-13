@@ -48,7 +48,7 @@
     "message": "Notifications"
   },
   "optionsCheckboxFriendsReq": {
-    "message": "Count friends new requests"
+    "message": "Count friends new requests too"
   },
   "optionsCheckboxSound": {
     "message": "Play sound when you got a new notification"
