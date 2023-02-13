@@ -14,8 +14,8 @@
 const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
-const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases';
-const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues';
+const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases/';
+const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues/';
 
 /**
  * Main functions
@@ -165,7 +165,7 @@ chrome.runtime.onInstalled.addListener(details => {
 
   // Open releases details on update
   if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && localStorage.getItem('isShowUpdates') === 'true') {
-    chrome.tabs.create({url: RELEASES_URL});
+    chrome.tabs.create({url: RELEASES_URL + 'latest'});
   }
 
   // Open issue on uninstall
