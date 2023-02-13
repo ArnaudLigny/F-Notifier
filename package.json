@@ -25,7 +25,7 @@
     "del": "^6.0",
     "gulp": "^4.0",
     "gulp-zip": "^5.1",
-    "web-ext-submit": "^6.8",
+    "web-ext-submit": "^7.5",
     "xo": "^0.48"
   },
   "xo": {
