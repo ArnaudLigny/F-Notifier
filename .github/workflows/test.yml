@@ -2,13 +2,10 @@ name: Test
 
 on:
   push:
-    branches:
-      - master
-    paths-ignore:
-      - 'docs/**'
+    branches: ['master']
+    paths-ignore: ['docs/**']
   pull_request:
-    paths-ignore:
-      - 'docs/**'
+    paths-ignore: ['docs/**']
   workflow_dispatch:
 
 jobs:
@@ -17,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 14
 

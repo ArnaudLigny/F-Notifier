@@ -7,37 +7,37 @@ env:
 on:
   release:
     types:
-    - published # Run when a GH release is published
+      - published # Run when a GH release is published
 
 jobs:
   build:
     name: Build extension
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout source
-      uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 14
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
-    - name: Install packages
-      run: npm install
+      - name: Install packages
+        run: npm install
 
-    - name: Run build
-      run: npm run build
+      - name: Run build
+        run: npm run build
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: build
-        path: build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
 
-    - name: Upload dist artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: dist
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
 
   publish_to_chrome:
     name: Publish to Chrome Web Store
@@ -45,9 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 14
 
@@ -55,7 +55,7 @@ jobs:
       run: npm install
 
     - name: Download build artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: build
         path: build
@@ -73,9 +73,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: 14
 
@@ -83,7 +83,7 @@ jobs:
       run: npm install
 
     - name: Download build artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: build
         path: build
@@ -101,7 +101,7 @@ jobs:
 
     steps:
     - name: Download dist artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: dist
         path: dist
