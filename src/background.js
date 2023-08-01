@@ -171,10 +171,13 @@ chrome.runtime.onInstalled.addListener(details => {
   // Open issue on uninstall
   chrome.runtime.setUninstallURL((() => {
     switch (chrome.i18n.getUILanguage()) {
-      case 'fr':
+      case 'fr': {
         return ISSUES_URL + '/new?labels=survey&title=Mon+avis+à+propos+de+cette+extension';
-      default:
+      }
+
+      default: {
         return ISSUES_URL + '/new?labels=survey&title=My+opinion+about+this+extension';
+      }
     }
   })());
 
