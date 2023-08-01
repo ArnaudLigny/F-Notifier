@@ -173,7 +173,6 @@ chrome.runtime.onInstalled.addListener(details => {
     switch (chrome.i18n.getUILanguage()) {
       case 'fr':
         return ISSUES_URL + '/new?labels=survey&title=Mon+avis+à+propos+de+cette+extension';
-      case 'en':
       default:
         return ISSUES_URL + '/new?labels=survey&title=My+opinion+about+this+extension';
     }
