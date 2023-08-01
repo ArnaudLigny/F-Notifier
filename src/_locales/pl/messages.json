@@ -1,0 +1,65 @@
+{
+  "extName": {
+    "message": "F-Notifier"
+  },
+  "extDescription": {
+    "message": "Wyświetla liczbę nieprzeczytanych powiadomień na Facebooku."
+  },
+  "actionNotifTitle": {
+    "message": "$count$ powiadomienia/powiadomień na Facebooku",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "7"
+      }
+    }
+  },
+  "action01NotifTitle": {
+    "message": "$count$ powiadomień/powiadomienie na Facebooku",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "actionErrorTitle": {
+    "message": "Powinieneś(-naś) być zalogowany(-a) na swoje konto na Facebooku"
+  },
+  "optionsSectionAction": {
+    "message": "Akcja ikony"
+  },
+  "optionsAction": {
+    "message": "Którą stronę otworzyć?"
+  },
+  "optionsSelectIfNotif": {
+    "message": "Jeśli masz powiadomienia:"
+  },
+  "optionsSelectIfNoNotif": {
+    "message": "Jeśli nie masz powiadomień:"
+  },
+  "optionsSelectOptionHome": {
+    "message": "Strona główna"
+  },
+  "optionsSelectOptionNotifications": {
+    "message": "Powiadomienia"
+  },
+  "optionsSectionNotifications": {
+    "message": "Powiadomienia"
+  },
+  "optionsCheckboxFriendsReq": {
+    "message": "Uwzględnij również nowe zaproszenia do grona znajomych"
+  },
+  "optionsCheckboxSound": {
+    "message": "Odtwórz dźwięk, gdy otrzymasz nowe powiadomienie"
+  },
+  "optionsAbout": {
+    "message": "O aplikacji"
+  },
+  "optionsSectionMisc": {
+    "message": "Różne"
+  },
+  "optionsCheckboxShowUpdates": {
+    "message": "Pokaż mi aktualizacje"
+  }
+}
