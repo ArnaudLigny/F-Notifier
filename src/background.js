@@ -140,9 +140,26 @@ function openFacebookHomeInTab(tab) {
   });
 }
 
+function rewriteUserAgentHeader(e) {
+  for (const header of e.requestHeaders) {
+    if (header.name.toLowerCase() === 'user-agent') {
+      // Prevent mobile to desktop version redirect
+      header.value = header.value.replace(/\sChrome\/[\d.]+/i, '$& Mobile');
+    }
+  }
+  return { requestHeaders: e.requestHeaders };
+}
+
 /**
  * Events
  */
+
+// Chrome request
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  rewriteUserAgentHeader,
+  { urls: [FETCH_URL] },
+  ['blocking', 'requestHeaders'],
+);
 
 // Chrome alarm
 chrome.alarms.create({delayInMinutes: 1, periodInMinutes: 1});
