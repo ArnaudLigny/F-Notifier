@@ -144,7 +144,7 @@ function rewriteUserAgentHeader(event) {
   for (const header of event.requestHeaders) {
     if (header.name.toLowerCase() === 'user-agent') {
       // Prevent mobile to desktop version redirect
-      header.value = header.value.replace(/\schrome\/[\d.]+/i, '$& Mobile');
+      header.value = header.value.replace(/\schrome\/[\d.]+/i, '$& Mobile').replace(/;\s*rv:[\d.]+/i, '; Mobile$&');
     }
   }
 
