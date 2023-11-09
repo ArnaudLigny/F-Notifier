@@ -140,14 +140,15 @@ function openFacebookHomeInTab(tab) {
   });
 }
 
-function rewriteUserAgentHeader(e) {
-  for (const header of e.requestHeaders) {
+function rewriteUserAgentHeader(event) {
+  for (const header of event.requestHeaders) {
     if (header.name.toLowerCase() === 'user-agent') {
       // Prevent mobile to desktop version redirect
-      header.value = header.value.replace(/\sChrome\/[\d.]+/i, '$& Mobile');
+      header.value = header.value.replace(/\schrome\/[\d.]+/i, '$& Mobile');
     }
   }
-  return { requestHeaders: e.requestHeaders };
+
+  return {requestHeaders: event.requestHeaders};
 }
 
 /**
@@ -157,7 +158,7 @@ function rewriteUserAgentHeader(e) {
 // Chrome request
 chrome.webRequest.onBeforeSendHeaders.addListener(
   rewriteUserAgentHeader,
-  { urls: [FETCH_URL] },
+  {urls: [FETCH_URL]},
   ['blocking', 'requestHeaders'],
 );
 
