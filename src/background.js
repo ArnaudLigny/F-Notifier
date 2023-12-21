@@ -16,6 +16,7 @@ const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases/';
 const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues/';
+const USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; Pixel 6 Build/SQ3A.220705.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/119.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/407.0.0.0.65;]';
 
 /**
  * Main functions
@@ -144,7 +145,7 @@ function rewriteUserAgentHeader(event) {
   for (const header of event.requestHeaders) {
     if (header.name.toLowerCase() === 'user-agent') {
       // Prevent mobile to desktop version redirect
-      header.value = header.value.replace(/\schrome\/[\d.]+/i, '$& Mobile').replace(/;\s*rv:[\d.]+/i, '; Mobile$&');
+      header.value = USER_AGENT;
     }
   }
 
