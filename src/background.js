@@ -11,7 +11,7 @@
  * Config
  */
 
-const FETCH_URL = 'https://m.facebook.com/home.php';
+const FETCH_URL = 'https://m.facebook.com/a/preferences.php?basic_site_devices=m_basic';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases/';
