@@ -6,7 +6,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     const inputLandingPage = document.querySelector('#landingPage');
     const inputLandingPageIfNotif = document.querySelector('#landingPageIfNotif');
-    const inputIsHomeNotification = document.querySelector('#isHomeNotif');
     const inputIsFriendsRequest = document.querySelector('#isFriendsReq');
     const inputIsSound = document.querySelector('#isSound');
     const inputIsShowUpdates = document.querySelector('#isShowUpdates');
@@ -37,12 +36,6 @@
         inputLandingPageIfNotif.value = 'notifications';
       }
 
-      // Home notifications
-      inputIsHomeNotification.checked = true;
-      if (localStorage.getItem('isHomeNotif') === 'false') {
-        inputIsHomeNotification.checked = false;
-      }
-
       // Friends requests
       inputIsFriendsRequest.checked = true;
       if (localStorage.getItem('isFriendsReq') === 'false') {
@@ -68,7 +61,6 @@
     function saveOptions() {
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
-      localStorage.setItem('isHomeNotif', inputIsHomeNotification.checked);
       localStorage.setItem('isFriendsReq', inputIsFriendsRequest.checked);
       localStorage.setItem('isSound', inputIsSound.checked);
       localStorage.setItem('isShowUpdates', inputIsShowUpdates.checked);
@@ -79,9 +71,6 @@
       saveOptions();
     });
     document.querySelector('#landingPageIfNotif').addEventListener('change', () => {
-      saveOptions();
-    });
-    document.querySelector('#isHomeNotif').addEventListener('change', () => {
       saveOptions();
     });
     document.querySelector('#isFriendsReq').addEventListener('change', () => {

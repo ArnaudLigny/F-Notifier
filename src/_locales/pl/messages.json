@@ -24,7 +24,7 @@
     }
   },
   "actionErrorTitle": {
-    "message": "Najpierw zaloguj się na swoje konto na Facebooku"
+    "message": "Zaloguj się na swoje konto na Facebooku"
   },
   "optionsSectionAction": {
     "message": "Akcja ikony"
@@ -46,9 +46,6 @@
   },
   "optionsSectionNotifications": {
     "message": "Powiadomienia"
-  },
-  "optionsCheckboxHomeNotif": {
-    "message": "Uwzględnij również powiadomienia Strony głównej"
   },
   "optionsCheckboxFriendsReq": {
     "message": "Uwzględnij również nowe zaproszenia do grona znajomych"

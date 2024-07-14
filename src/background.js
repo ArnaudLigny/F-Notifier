@@ -39,54 +39,36 @@ const notificationsCount = callback => {
     })
     .then(data => {
       let count = 0;
-      let isMore = false;
-      const selector = '[id$="_jewel"]';
-      const countSelector = '[data-sigil="count"]';
-      const options = {
-        feed: 'isHomeNotif',
-        requests: 'isFriendsReq',
-        notifications: null,
-      };
+      const notificationsSelector = '#notifications_jewel';
+      const requestsSelector = '#requests_jewel';
+      const classSelector = '._59tg';
       const temporaryDom = parser.parseFromString(data, 'text/html');
-      const elements = temporaryDom.querySelectorAll(selector);
+      const countNotifElement = temporaryDom.querySelector(notificationsSelector).querySelector(classSelector);
+      const countRequestElement = temporaryDom.querySelector(requestsSelector).querySelector(classSelector);
 
       // Debug
       console.log(temporaryDom);
-      console.log(elements);
+      console.log(countNotifElement);
+      console.log(countRequestElement);
 
-      if (elements.length === 0) {
+      if (countNotifElement === null) {
         throw new Error('User not connected.');
       }
 
-      for (const element of elements) {
-        const id = element.id.replaceAll(/_|jewel$/g, '');
+      count += Number.parseInt(countNotifElement.textContent, 10);
 
-        if (Object.prototype.hasOwnProperty.call(options, id)) {
-          const option = options[id];
-
-          if (!option || localStorage.getItem(option) === 'true') {
-            const label = element.querySelector(countSelector).textContent;
-            const value = Number.parseInt(label, 10);
-
-            if (!Number.isNaN(value)) {
-              count += value;
-
-              if (String(label).includes('+')) {
-                isMore = true;
-              }
-            }
-          }
-        }
+      if (localStorage.getItem('isFriendsReq') === 'true') {
+        count += Number.parseInt(countRequestElement.textContent, 10);
       }
 
-      callback(count, isMore);
+      callback(count);
     })
     .catch(callback);
 };
 
 // Update badge
 function updateBadge() {
-  notificationsCount((count, isMore) => {
+  notificationsCount(count => {
     if (count instanceof Error) {
       render(
         '?',
@@ -98,7 +80,7 @@ function updateBadge() {
     }
 
     render(
-      count > 0 ? count.toString() + (isMore ? '+' : '') : '',
+      count > 0 ? count.toString() : '',
       [208, 0, 24, 255],
       count > 1 ? chrome.i18n.getMessage('actionNotifTitle', count.toString()) : chrome.i18n.getMessage('action01NotifTitle', count.toString()),
     );
@@ -195,7 +177,6 @@ chrome.browserAction.onClicked.addListener(tab => {
 chrome.runtime.onInstalled.addListener(details => {
   // Set default options
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    localStorage.setItem('isHomeNotif', false);
     localStorage.setItem('isFriendsReq', true);
     localStorage.setItem('isShowUpdates', true);
     chrome.runtime.openOptionsPage();

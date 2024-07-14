@@ -47,9 +47,6 @@
   "optionsSectionNotifications": {
     "message": "Notifications"
   },
-  "optionsCheckboxHomeNotif": {
-    "message": "Compter également les notifications d’accueil"
-  },
   "optionsCheckboxFriendsReq": {
     "message": "Compter également les nouvelles demandes d’amis"
   },

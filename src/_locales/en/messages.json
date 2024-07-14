@@ -47,9 +47,6 @@
   "optionsSectionNotifications": {
     "message": "Notifications"
   },
-  "optionsCheckboxHomeNotif": {
-    "message": "Count Home notifications too"
-  },
   "optionsCheckboxFriendsReq": {
     "message": "Count friends new requests too"
   },
