@@ -53,12 +53,6 @@
   "optionsCheckboxFriendsReq": {
     "message": "Uwzględnij również nowe zaproszenia do grona znajomych"
   },
-  "optionsCheckboxVideosNotif": {
-    "message": "Uwzględnij również powiadomienia Filmów"
-  },
-  "optionsCheckboxMarketplaceNotif": {
-    "message": "Uwzględnij również powiadomienia Marketplace"
-  },
   "optionsCheckboxSound": {
     "message": "Odtwórz dźwięk, gdy otrzymasz nowe powiadomienie"
   },

@@ -53,12 +53,6 @@
   "optionsCheckboxFriendsReq": {
     "message": "Compter également les nouvelles demandes d’amis"
   },
-  "optionsCheckboxVideosNotif": {
-    "message": "Compter également les notifications de vidéos"
-  },
-  "optionsCheckboxMarketplaceNotif": {
-    "message": "Compter également les notifications Marketplace"
-  },
   "optionsCheckboxSound": {
     "message": "Émettre un son lorsque vous avez une nouvelle notification"
   },

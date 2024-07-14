@@ -45,9 +45,7 @@ const notificationsCount = callback => {
       const options = {
         feed: 'isHomeNotif',
         requests: 'isFriendsReq',
-        videostab: 'isVideosNotif',
         notifications: null,
-        marketplace: 'isMarketplaceNotif',
       };
       const temporaryDom = parser.parseFromString(data, 'text/html');
       const elements = temporaryDom.querySelectorAll(selector);
@@ -199,8 +197,6 @@ chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
     localStorage.setItem('isHomeNotif', false);
     localStorage.setItem('isFriendsReq', true);
-    localStorage.setItem('isVideosNotif', false);
-    localStorage.setItem('isMarketplaceNotif', false);
     localStorage.setItem('isShowUpdates', true);
     chrome.runtime.openOptionsPage();
   }

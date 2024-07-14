@@ -8,8 +8,6 @@
     const inputLandingPageIfNotif = document.querySelector('#landingPageIfNotif');
     const inputIsHomeNotification = document.querySelector('#isHomeNotif');
     const inputIsFriendsRequest = document.querySelector('#isFriendsReq');
-    const inputIsVideosNotification = document.querySelector('#isVideosNotif');
-    const inputIsMarketplaceNotification = document.querySelector('#isMarketplaceNotif');
     const inputIsSound = document.querySelector('#isSound');
     const inputIsShowUpdates = document.querySelector('#isShowUpdates');
 
@@ -51,18 +49,6 @@
         inputIsFriendsRequest.checked = false;
       }
 
-      // Videos notifications
-      inputIsVideosNotification.checked = true;
-      if (localStorage.getItem('isVideosNotif') === 'false') {
-        inputIsVideosNotification.checked = false;
-      }
-
-      // Marketplace notifications
-      inputIsMarketplaceNotification.checked = true;
-      if (localStorage.getItem('isMarketplaceNotif') === 'false') {
-        inputIsMarketplaceNotification.checked = false;
-      }
-
       // Sound
       inputIsSound.checked = false;
       if (localStorage.getItem('isSound') === 'true') {
@@ -84,8 +70,6 @@
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
       localStorage.setItem('isHomeNotif', inputIsHomeNotification.checked);
       localStorage.setItem('isFriendsReq', inputIsFriendsRequest.checked);
-      localStorage.setItem('isVideosNotif', inputIsVideosNotification.checked);
-      localStorage.setItem('isMarketplaceNotif', inputIsMarketplaceNotification.checked);
       localStorage.setItem('isSound', inputIsSound.checked);
       localStorage.setItem('isShowUpdates', inputIsShowUpdates.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
@@ -101,12 +85,6 @@
       saveOptions();
     });
     document.querySelector('#isFriendsReq').addEventListener('change', () => {
-      saveOptions();
-    });
-    document.querySelector('#isVideosNotif').addEventListener('change', () => {
-      saveOptions();
-    });
-    document.querySelector('#isMarketplaceNotif').addEventListener('change', () => {
       saveOptions();
     });
     document.querySelector('#isSound').addEventListener('change', () => {
