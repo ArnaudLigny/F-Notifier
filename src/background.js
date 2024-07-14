@@ -61,7 +61,7 @@ const notificationsCount = callback => {
       }
 
       for (const element of elements) {
-        const id = element.id.replace(/_|jewel$/g, '');
+        const id = element.id.replaceAll(/_|jewel$/g, '');
 
         if (Object.prototype.hasOwnProperty.call(options, id)) {
           const option = options[id];
