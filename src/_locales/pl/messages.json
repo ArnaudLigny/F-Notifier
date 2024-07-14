@@ -24,7 +24,7 @@
     }
   },
   "actionErrorTitle": {
-    "message": "Powinieneś(-naś) być zalogowany(-a) na swoje konto na Facebooku"
+    "message": "Najpierw zaloguj się na swoje konto na Facebooku"
   },
   "optionsSectionAction": {
     "message": "Akcja ikony"
@@ -47,8 +47,17 @@
   "optionsSectionNotifications": {
     "message": "Powiadomienia"
   },
+  "optionsCheckboxHomeNotif": {
+    "message": "Uwzględnij również powiadomienia Strony głównej"
+  },
   "optionsCheckboxFriendsReq": {
     "message": "Uwzględnij również nowe zaproszenia do grona znajomych"
+  },
+  "optionsCheckboxVideosNotif": {
+    "message": "Uwzględnij również powiadomienia Filmów"
+  },
+  "optionsCheckboxMarketplaceNotif": {
+    "message": "Uwzględnij również powiadomienia Marketplace"
   },
   "optionsCheckboxSound": {
     "message": "Odtwórz dźwięk, gdy otrzymasz nowe powiadomienie"

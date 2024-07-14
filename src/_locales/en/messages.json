@@ -47,8 +47,17 @@
   "optionsSectionNotifications": {
     "message": "Notifications"
   },
+  "optionsCheckboxHomeNotif": {
+    "message": "Count Home notifications too"
+  },
   "optionsCheckboxFriendsReq": {
     "message": "Count friends new requests too"
+  },
+  "optionsCheckboxVideosNotif": {
+    "message": "Count Videos notifications too"
+  },
+  "optionsCheckboxMarketplaceNotif": {
+    "message": "Count Marketplace notifications too"
   },
   "optionsCheckboxSound": {
     "message": "Play sound when you got a new notification"

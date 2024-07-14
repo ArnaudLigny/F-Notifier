@@ -6,7 +6,10 @@
   document.addEventListener('DOMContentLoaded', () => {
     const inputLandingPage = document.querySelector('#landingPage');
     const inputLandingPageIfNotif = document.querySelector('#landingPageIfNotif');
+    const inputIsHomeNotification = document.querySelector('#isHomeNotif');
     const inputIsFriendsRequest = document.querySelector('#isFriendsReq');
+    const inputIsVideosNotification = document.querySelector('#isVideosNotif');
+    const inputIsMarketplaceNotification = document.querySelector('#isMarketplaceNotif');
     const inputIsSound = document.querySelector('#isSound');
     const inputIsShowUpdates = document.querySelector('#isShowUpdates');
 
@@ -36,10 +39,28 @@
         inputLandingPageIfNotif.value = 'notifications';
       }
 
+      // Home notifications
+      inputIsHomeNotification.checked = true;
+      if (localStorage.getItem('isHomeNotif') === 'false') {
+        inputIsHomeNotification.checked = false;
+      }
+
       // Friends requests
       inputIsFriendsRequest.checked = true;
       if (localStorage.getItem('isFriendsReq') === 'false') {
         inputIsFriendsRequest.checked = false;
+      }
+
+      // Videos notifications
+      inputIsVideosNotification.checked = true;
+      if (localStorage.getItem('isVideosNotif') === 'false') {
+        inputIsVideosNotification.checked = false;
+      }
+
+      // Marketplace notifications
+      inputIsMarketplaceNotification.checked = true;
+      if (localStorage.getItem('isMarketplaceNotif') === 'false') {
+        inputIsMarketplaceNotification.checked = false;
       }
 
       // Sound
@@ -61,7 +82,10 @@
     function saveOptions() {
       localStorage.setItem('landingPage', inputLandingPage.value);
       localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
+      localStorage.setItem('isHomeNotif', inputIsHomeNotification.checked);
       localStorage.setItem('isFriendsReq', inputIsFriendsRequest.checked);
+      localStorage.setItem('isVideosNotif', inputIsVideosNotification.checked);
+      localStorage.setItem('isMarketplaceNotif', inputIsMarketplaceNotification.checked);
       localStorage.setItem('isSound', inputIsSound.checked);
       localStorage.setItem('isShowUpdates', inputIsShowUpdates.checked);
       chrome.runtime.sendMessage({do: 'updatebadge'});
@@ -73,7 +97,16 @@
     document.querySelector('#landingPageIfNotif').addEventListener('change', () => {
       saveOptions();
     });
+    document.querySelector('#isHomeNotif').addEventListener('change', () => {
+      saveOptions();
+    });
     document.querySelector('#isFriendsReq').addEventListener('change', () => {
+      saveOptions();
+    });
+    document.querySelector('#isVideosNotif').addEventListener('change', () => {
+      saveOptions();
+    });
+    document.querySelector('#isMarketplaceNotif').addEventListener('change', () => {
       saveOptions();
     });
     document.querySelector('#isSound').addEventListener('change', () => {
