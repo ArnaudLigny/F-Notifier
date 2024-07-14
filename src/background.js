@@ -43,11 +43,11 @@ const notificationsCount = callback => {
       const selector = '[id$="_jewel"]';
       const countSelector = '[data-sigil="count"]';
       const options = {
-        feed_jewel: 'isHomeNotif',
-        requests_jewel: 'isFriendsReq',
-        videos_tab_jewel: 'isVideosNotif',
-        notifications_jewel: null,
-        marketplace_jewel: 'isMarketplaceNotif',
+        feed: 'isHomeNotif',
+        requests: 'isFriendsReq',
+        videostab: 'isVideosNotif',
+        notifications: null,
+        marketplace: 'isMarketplaceNotif',
       };
       const temporaryDom = parser.parseFromString(data, 'text/html');
       const elements = temporaryDom.querySelectorAll(selector);
@@ -61,7 +61,7 @@ const notificationsCount = callback => {
       }
 
       for (const element of elements) {
-        const id = element.id;
+        const id = element.id.replace(/_|jewel$/g, '');
 
         if (Object.prototype.hasOwnProperty.call(options, id)) {
           const option = options[id];
