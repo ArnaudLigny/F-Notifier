@@ -43,11 +43,11 @@ const notificationsCount = callback => {
       const selector = '[id$="_jewel"]';
       const countSelector = '[data-sigil="count"]';
       const options = {
-        'feed_jewel': 'isHomeNotif',
-        'requests_jewel': 'isFriendsReq',
-        'videos_tab_jewel': 'isVideosNotif',
-        'notifications_jewel': null,
-        'marketplace_jewel': 'isMarketplaceNotif'
+        feed_jewel: 'isHomeNotif',
+        requests_jewel: 'isFriendsReq',
+        videos_tab_jewel: 'isVideosNotif',
+        notifications_jewel: null,
+        marketplace_jewel: 'isMarketplaceNotif',
       };
       const temporaryDom = parser.parseFromString(data, 'text/html');
       const elements = temporaryDom.querySelectorAll(selector);
@@ -60,7 +60,7 @@ const notificationsCount = callback => {
         throw new Error('User not connected.');
       }
 
-      elements.forEach(element => {
+      for (const element of elements) {
         const id = element.id;
 
         if (Object.prototype.hasOwnProperty.call(options, id)) {
@@ -73,13 +73,13 @@ const notificationsCount = callback => {
             if (!Number.isNaN(value)) {
               count += value;
 
-              if (String(label).indexOf('+') >= 0) {
+              if (String(label).includes('+')) {
                 isMore = true;
               }
             }
           }
         }
-      });
+      }
 
       callback(count, isMore);
     })
