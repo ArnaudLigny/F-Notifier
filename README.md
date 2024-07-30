@@ -10,13 +10,10 @@ _F-Notifier_ is a browser extension that displays your [Facebook notifications](
 
 ## Latest releases
 
+<dl>
 <!-- RELEASES:START -->
-- [2.8.5](https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.5)
-- [2.8.4](https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.4)
-- [2.8.3](https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.3)
-- [2.8.2](https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.2)
-- [2.8.1](https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.1)
 <!-- RELEASES:END -->
+</dl>
 
 ## Support
 
