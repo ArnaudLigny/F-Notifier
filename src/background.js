@@ -14,7 +14,7 @@
 const FETCH_URL = 'https://m.facebook.com/a/preferences.php?basic_site_devices=m_basic';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
-const RELEASES_URL = 'https://github.com/ArnaudLigny/F-Notifier/releases/';
+const RELEASES_URL = 'https://dev.ligny.org/F-Notifier/#releases';
 const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues/';
 const USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; Pixel 6 Build/SQ3A.220705.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/119.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/407.0.0.0.65;]';
 
@@ -184,7 +184,7 @@ chrome.runtime.onInstalled.addListener(details => {
 
   // Open releases details on update
   if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && localStorage.getItem('isShowUpdates') === 'true') {
-    chrome.tabs.create({url: RELEASES_URL + 'latest'});
+    chrome.tabs.create({url: RELEASES_URL});
   }
 
   // Open issue on uninstall
