@@ -13,3 +13,5 @@ jobs:
       with:
         comment_tag_name: RELEASES
         feed_list: https://github.com/ArnaudLigny/F-Notifier/releases.atom
+        max_post_count: 3
+        template: "<dt><a href=\"$url\">$title</a></dt>$newline<dd>$description</dd>$newline"
