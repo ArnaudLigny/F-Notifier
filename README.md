@@ -8,6 +8,11 @@ _F-Notifier_ is a browser extension that displays your [Facebook notifications](
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
 
+## Latest releases
+
+<!-- RELEASES:START -->
+<!-- RELEASES:END -->
+
 ## Support
 
 <https://github.com/ArnaudLigny/F-Notifier/issues>
