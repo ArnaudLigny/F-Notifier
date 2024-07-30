@@ -1,0 +1,15 @@
+name: Update README
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+jobs:
+  update-readme:
+    name: Fetch releases feed
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: gautamkrishnar/blog-post-workflow@v1
+      with:
+        comment_tag_name: RELEASES
+        feed_list: https://github.com/ArnaudLigny/F-Notifier/releases.atom
