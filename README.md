@@ -8,19 +8,10 @@ _F-Notifier_ is a browser extension that displays your [Facebook notifications](
 
 ![F-Notifier screenshot](docs/screenshot.png "F-Notifier screenshot")
 
-## Latest releases
+## Releases
 
 <dl>
-<!-- RELEASES:START --><dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.5">2.8.5</a></dt>
-<dd>&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;fix: fb feed redirect error by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/logeen/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/logeen&quot;&gt;@logeen&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2407409954&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/ArnaudLigny/F-Notifier/issues/70&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/ArnaudLigny/F-Notifier/pull/70/hovercard&quot; href=&quot;https://github.com/ArnaudLigny/F-Notifier/pull/70&quot;&gt;#70&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/ArnaudLigny/F-Notifier/compare/2.8.4...2.8.5&quot;&gt;&lt;tt&gt;2.8.4...2.8.5&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</dd>
-<dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.4">2.8.4</a></dt>
-<dd>&lt;p&gt;Fix &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2051265552&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/ArnaudLigny/F-Notifier/issues/66&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/ArnaudLigny/F-Notifier/issues/66/hovercard&quot; href=&quot;https://github.com/ArnaudLigny/F-Notifier/issues/66&quot;&gt;#66&lt;/a&gt;: spoof Facebook on Android user agent to prevent HTTP 301 redirection.&lt;/p&gt;</dd>
-<dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.3">2.8.3</a></dt>
-<dd>&lt;p&gt;Prevent mobile to desktop version redirect &lpar;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;1985431271&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/ArnaudLigny/F-Notifier/issues/64&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/ArnaudLigny/F-Notifier/pull/64/hovercard&quot; href=&quot;https://github.com/ArnaudLigny/F-Notifier/pull/64&quot;&gt;#64&lt;/a&gt;&rpar;.&lt;/p&gt;</dd>
+<!-- RELEASES:START -->
 <!-- RELEASES:END -->
 </dl>
 
