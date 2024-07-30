@@ -12,11 +12,7 @@ _F-Notifier_ is a browser extension that displays your [Facebook notifications](
 
 <dl>
 <!-- RELEASES:START --><dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.5">2.8.5</a></dt>
-<dd><h2>What's Changed</h2>
-<ul>
-<li>fix: fb feed redirect error by <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/logeen/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/logeen">@logeen</a> in <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="2407409954" data-permission-text="Title is private" data-url="https://github.com/ArnaudLigny/F-Notifier/issues/70" data-hovercard-type="pull_request" data-hovercard-url="/ArnaudLigny/F-Notifier/pull/70/hovercard" href="https://github.com/ArnaudLigny/F-Notifier/pull/70">#70</a></li>
-</ul>
-<p><strong>Full Changelog</strong>: <a class="commit-link" href="https://github.com/ArnaudLigny/F-Notifier/compare/2.8.4...2.8.5"><tt>2.8.4...2.8.5</tt></a></p></dd>
+<dd><p>Fix Facebook feed redirect error by <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/logeen/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/logeen">@logeen</a> in <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="2407409954" data-permission-text="Title is private" data-url="https://github.com/ArnaudLigny/F-Notifier/issues/70" data-hovercard-type="pull_request" data-hovercard-url="/ArnaudLigny/F-Notifier/pull/70/hovercard" href="https://github.com/ArnaudLigny/F-Notifier/pull/70">#70</a>.</p></dd>
 <dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.4">2.8.4</a></dt>
 <dd><p>Fix <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="2051265552" data-permission-text="Title is private" data-url="https://github.com/ArnaudLigny/F-Notifier/issues/66" data-hovercard-type="issue" data-hovercard-url="/ArnaudLigny/F-Notifier/issues/66/hovercard" href="https://github.com/ArnaudLigny/F-Notifier/issues/66">#66</a>: spoof Facebook on Android user agent to prevent HTTP 301 redirection.</p></dd>
 <dt><a href="https://github.com/ArnaudLigny/F-Notifier/releases/tag/2.8.3">2.8.3</a></dt>
