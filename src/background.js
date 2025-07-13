@@ -11,12 +11,12 @@
  * Config
  */
 
-const FETCH_URL = 'https://m.facebook.com/a/preferences.php?basic_site_devices=m_basic';
+const FETCH_URL = 'https://m.facebook.com/';
 const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 const RELEASES_URL = 'https://dev.ligny.org/F-Notifier/#releases';
 const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues/';
-const USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; Pixel 6 Build/SQ3A.220705.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/119.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/407.0.0.0.65;]';
+const USER_AGENT = 'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36';
 
 /**
  * Main functions
@@ -39,9 +39,9 @@ const notificationsCount = callback => {
     })
     .then(data => {
       let count = 0;
-      const notificationsSelector = '#notifications_jewel';
-      const requestsSelector = '#requests_jewel';
-      const classSelector = '._59tg';
+      const notificationsSelector = '[data-markup-text-ref-key="notifications.jewel.count"]';
+      const requestsSelector = '[data-markup-text-ref-key="friends.jewel.count"]';
+      const classSelector = '.f6';
       const temporaryDom = parser.parseFromString(data, 'text/html');
       const countNotifElement = temporaryDom.querySelector(notificationsSelector).querySelector(classSelector);
       const countRequestElement = temporaryDom.querySelector(requestsSelector).querySelector(classSelector);
