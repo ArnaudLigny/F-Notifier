@@ -1,3 +1,6 @@
+> [!NOTE]
+> I'm archiving this repository until I get the courage to migrate to Manifest V3 or someone helps me.
+
 _F-Notifier_ is a browser extension that displays your [Facebook notifications](https://www.facebook.com/help/1036755649750898/) unread count.
 
 > Only "classics" notifications are supported (like comments on a post or tagging, but **not _Messenger_'s notifications**).
