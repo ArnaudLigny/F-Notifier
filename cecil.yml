@@ -5,6 +5,6 @@ baseurl: https://dev.ligny.org/F-Notifier/
 pages:
   dir: .
 static:
-  dir: docs
+  dir: .
   target: docs
 image: docs/screenshot.png
