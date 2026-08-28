@@ -23,47 +23,41 @@
 
     applyTranslations();
 
-    // Laod options
-    function loadOptions() {
-      // Page
-      inputLandingPage.value = localStorage.getItem('landingPage');
-      if (localStorage.getItem('landingPage') === null) {
-        inputLandingPage.value = 'home';
-      }
+    // Load options
+    async function loadOptions() {
+      const options = await chrome.storage.local.get([
+        'landingPage',
+        'landingPageIfNotif',
+        'isFriendsReq',
+        'isSound',
+        'isShowUpdates',
+      ]);
 
-      inputLandingPageIfNotif.value = localStorage.getItem('landingPageIfNotif');
-      if (localStorage.getItem('landingPageIfNotif') === null) {
-        inputLandingPageIfNotif.value = 'notifications';
-      }
+      // Page
+      inputLandingPage.value = options.landingPage ?? 'home';
+      inputLandingPageIfNotif.value = options.landingPageIfNotif ?? 'notifications';
 
       // Friends requests
-      inputIsFriendsRequest.checked = true;
-      if (localStorage.getItem('isFriendsReq') === 'false') {
-        inputIsFriendsRequest.checked = false;
-      }
+      inputIsFriendsRequest.checked = options.isFriendsReq !== false && options.isFriendsReq !== 'false';
 
       // Sound
-      inputIsSound.checked = false;
-      if (localStorage.getItem('isSound') === 'true') {
-        inputIsSound.checked = true;
-      }
+      inputIsSound.checked = options.isSound === true || options.isSound === 'true';
 
       // Show updates
-      inputIsShowUpdates.checked = true;
-      if (localStorage.getItem('isShowUpdates') === 'false') {
-        inputIsShowUpdates.checked = false;
-      }
+      inputIsShowUpdates.checked = options.isShowUpdates !== false && options.isShowUpdates !== 'false';
     }
 
     loadOptions();
 
     // Save options
-    function saveOptions() {
-      localStorage.setItem('landingPage', inputLandingPage.value);
-      localStorage.setItem('landingPageIfNotif', inputLandingPageIfNotif.value);
-      localStorage.setItem('isFriendsReq', inputIsFriendsRequest.checked);
-      localStorage.setItem('isSound', inputIsSound.checked);
-      localStorage.setItem('isShowUpdates', inputIsShowUpdates.checked);
+    async function saveOptions() {
+      await chrome.storage.local.set({
+        landingPage: inputLandingPage.value,
+        landingPageIfNotif: inputLandingPageIfNotif.value,
+        isFriendsReq: inputIsFriendsRequest.checked,
+        isSound: inputIsSound.checked,
+        isShowUpdates: inputIsShowUpdates.checked,
+      });
       chrome.runtime.sendMessage({do: 'updatebadge'});
     }
 

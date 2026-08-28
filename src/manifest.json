@@ -1,11 +1,11 @@
 {
   "name": "__MSG_extName__",
-  "version": "2.8.5",
+  "version": "3.0.0",
   "description": "__MSG_extDescription__",
   "homepage_url": "https://dev.ligny.org/F-Notifier",
   "author": "Arnaud Ligny",
-  "manifest_version": 2,
-  "minimum_chrome_version": "52",
+  "manifest_version": 3,
+  "minimum_chrome_version": "116",
   "default_locale": "en",
   "icons": {
     "128": "icon-128.png"
@@ -13,26 +13,32 @@
   "permissions": [
     "alarms",
     "tabs",
-    "webRequest",
-    "webRequestBlocking",
+    "declarativeNetRequest",
+    "storage",
+    "offscreen"
+  ],
+  "host_permissions": [
     "https://m.facebook.com/"
   ],
   "background": {
-    "persistent": true,
-    "scripts": [
-      "common.js",
-      "background.js"
-    ]
+    "service_worker": "background.js"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "38": "icon-38.png"
     }
   },
   "options_ui": {
     "page": "options.html",
-    "open_in_tab": false,
-    "chrome_style": true,
-    "browser_style": true
+    "open_in_tab": false
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   }
 }
