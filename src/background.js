@@ -5,8 +5,6 @@
  * file that was distributed with this source code.
  */
 
-/* global playSound */
-
 /**
  * Config
  */
@@ -16,175 +14,185 @@ const HOME_URL = 'https://www.facebook.com/';
 const NOTIFICATIONS_URL = HOME_URL + 'notifications';
 const RELEASES_URL = 'https://dev.ligny.org/F-Notifier/#releases';
 const ISSUES_URL = 'https://github.com/ArnaudLigny/F-Notifier/issues/';
-const USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; Pixel 6 Build/SQ3A.220705.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/119.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/407.0.0.0.65;]';
+
+/**
+ * Storage helpers
+ */
+
+async function getStorage(key, defaultValue = null) {
+  const result = await chrome.storage.local.get([key]);
+  return result[key] === undefined ? defaultValue : result[key];
+}
+
+async function setStorage(key, value) {
+  await chrome.storage.local.set({[key]: value});
+}
+
+// Service workers have no DOM/Audio, so both live in an offscreen document.
+async function ensureOffscreen() {
+  const contexts = await chrome.runtime.getContexts({contextTypes: ['OFFSCREEN_DOCUMENT']});
+  if (contexts.length === 0) {
+    await chrome.offscreen.createDocument({
+      url: 'offscreen.html',
+      reasons: ['AUDIO_PLAYBACK', 'DOM_PARSER'],
+      justification: 'Play the notification sound and parse the Facebook page.',
+    });
+  }
+}
 
 /**
  * Main functions
  */
 
 // Notifications count function
-const notificationsCount = callback => {
-  const parser = new DOMParser();
-
-  window.fetch(FETCH_URL, {
+const notificationsCount = async () => {
+  const response = await fetch(FETCH_URL, {
     cache: 'no-cache',
     credentials: 'include',
-  })
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      }
+  });
 
-      throw new Error('Network response was not OK');
-    })
-    .then(data => {
-      let count = 0;
-      const notificationsSelector = '#notifications_jewel';
-      const requestsSelector = '#requests_jewel';
-      const classSelector = '._59tg';
-      const temporaryDom = parser.parseFromString(data, 'text/html');
-      const countNotifElement = temporaryDom.querySelector(notificationsSelector).querySelector(classSelector);
-      const countRequestElement = temporaryDom.querySelector(requestsSelector).querySelector(classSelector);
+  if (!response.ok) {
+    throw new Error('Network response was not OK');
+  }
 
-      // Debug
-      console.log(temporaryDom);
-      console.log(countNotifElement);
-      console.log(countRequestElement);
+  const data = await response.text();
+  await ensureOffscreen();
+  const parsed = await chrome.runtime.sendMessage({action: 'parseNotifications', html: data});
 
-      if (countNotifElement === null) {
-        throw new Error('User not connected.');
-      }
+  if (!parsed || parsed.notif === null) {
+    throw new Error('User not connected.');
+  }
 
-      count += Number.parseInt(countNotifElement.textContent, 10);
+  let count = Number.parseInt(parsed.notif, 10);
 
-      if (localStorage.getItem('isFriendsReq') === 'true') {
-        count += Number.parseInt(countRequestElement.textContent, 10);
-      }
+  const isFriendsRequest = await getStorage('isFriendsReq', true);
+  if ((isFriendsRequest === true || isFriendsRequest === 'true') && parsed.request !== null) {
+    count += Number.parseInt(parsed.request, 10);
+  }
 
-      callback(count);
-    })
-    .catch(callback);
+  return count;
 };
 
 // Update badge
-function updateBadge() {
-  notificationsCount(count => {
-    if (count instanceof Error) {
-      render(
-        '?',
-        [190, 190, 190, 255],
-        chrome.i18n.getMessage('actionErrorTitle'),
-      );
-
-      return;
-    }
+async function updateBadge() {
+  try {
+    const count = await notificationsCount();
 
     render(
       count > 0 ? count.toString() : '',
       [208, 0, 24, 255],
       count > 1 ? chrome.i18n.getMessage('actionNotifTitle', count.toString()) : chrome.i18n.getMessage('action01NotifTitle', count.toString()),
     );
+
     // Play sound?
-    if (localStorage.getItem('isSound') === 'true'
-      && (count > Number.parseInt(localStorage.getItem('count'), 10)
-      || localStorage.getItem('count') === null)
+    const isSound = await getStorage('isSound', false);
+    const storedCount = await getStorage('count', null);
+    if (
+      (isSound === true || isSound === 'true')
+      && (count > Number.parseInt(storedCount, 10) || storedCount === null)
     ) {
-      playSound();
+      await playSound();
     }
 
-    localStorage.setItem('count', count);
-  });
+    await setStorage('count', count);
+  } catch {
+    render(
+      '?',
+      [190, 190, 190, 255],
+      chrome.i18n.getMessage('actionErrorTitle'),
+    );
+  }
 }
 
 // Badge renderer
 function render(text, color, title) {
-  chrome.browserAction.setBadgeText({text});
-  chrome.browserAction.setBadgeBackgroundColor({color});
-  chrome.browserAction.setTitle({title});
-  chrome.browserAction.setIcon({path: 'icon-38.png'});
+  chrome.action.setBadgeText({text});
+  chrome.action.setBadgeBackgroundColor({color});
+  chrome.action.setTitle({title});
+  chrome.action.setIcon({path: 'icon-38.png'});
+}
+
+// Sound playback via the offscreen document
+async function playSound() {
+  await ensureOffscreen();
+  chrome.runtime.sendMessage({action: 'playSound'});
 }
 
 /**
  * Helpers
  */
 
-function getTabUrl() {
-  if (Number.parseInt(localStorage.getItem('count'), 10) > 0) {
-    if (localStorage.getItem('landingPageIfNotif') === 'home') {
+async function getTabUrl() {
+  const count = await getStorage('count', 0);
+  if (Number.parseInt(count, 10) > 0) {
+    const landingPageIfNotif = await getStorage('landingPageIfNotif', 'notifications');
+    if (landingPageIfNotif === 'home') {
       return HOME_URL;
     }
 
     return NOTIFICATIONS_URL;
   }
 
-  if (localStorage.getItem('landingPage') === 'notifications') {
+  const landingPage = await getStorage('landingPage', 'home');
+  if (landingPage === 'notifications') {
     return NOTIFICATIONS_URL;
   }
 
   return HOME_URL;
 }
 
-function openFacebookHomeInTab(tab) {
-  chrome.tabs.query({
+async function openFacebookHomeInTab(tab) {
+  const url = await getTabUrl();
+  const tabs = await chrome.tabs.query({
     currentWindow: true,
     url: HOME_URL + '*',
-  }, tabs => {
-    if (tabs && tabs.length > 0) {
-      return chrome.tabs.update(tabs[0].id, {active: true});
-    }
-
-    if (tab && tab.url === 'chrome://newtab/') {
-      return chrome.tabs.update(null, {url: getTabUrl(), active: false});
-    }
-
-    return chrome.tabs.create({url: getTabUrl()});
   });
-}
 
-function rewriteUserAgentHeader(event) {
-  for (const header of event.requestHeaders) {
-    if (header.name.toLowerCase() === 'user-agent') {
-      // Prevent mobile to desktop version redirect
-      header.value = USER_AGENT;
-    }
+  if (tabs && tabs.length > 0) {
+    return chrome.tabs.update(tabs[0].id, {active: true});
   }
 
-  return {requestHeaders: event.requestHeaders};
+  if (tab && tab.url === 'chrome://newtab/') {
+    return chrome.tabs.update(tab.id, {url, active: false});
+  }
+
+  return chrome.tabs.create({url});
 }
 
 /**
  * Events
  */
 
-// Chrome request
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  rewriteUserAgentHeader,
-  {urls: [FETCH_URL]},
-  ['blocking', 'requestHeaders'],
-);
-
 // Chrome alarm
-chrome.alarms.create({delayInMinutes: 1, periodInMinutes: 1});
+chrome.alarms.create('fetchNotifications', {delayInMinutes: 1, periodInMinutes: 1});
 chrome.alarms.onAlarm.addListener(updateBadge);
 
-// Browser action
-chrome.browserAction.onClicked.addListener(tab => {
+// Action
+chrome.action.onClicked.addListener(tab => {
   updateBadge();
   openFacebookHomeInTab(tab);
 });
 
 // Check whether new version is installed
-chrome.runtime.onInstalled.addListener(details => {
+chrome.runtime.onInstalled.addListener(async details => {
   // Set default options
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    localStorage.setItem('isFriendsReq', true);
-    localStorage.setItem('isShowUpdates', true);
+    await chrome.storage.local.set({
+      isFriendsReq: true,
+      isShowUpdates: true,
+      landingPage: 'home',
+      landingPageIfNotif: 'notifications',
+      isSound: false,
+    });
     chrome.runtime.openOptionsPage();
   }
 
   // Open releases details on update
-  if (details.reason === chrome.runtime.OnInstalledReason.UPDATE && localStorage.getItem('isShowUpdates') === 'true') {
-    chrome.tabs.create({url: RELEASES_URL});
+  if (details.reason === chrome.runtime.OnInstalledReason.UPDATE) {
+    const isShowUpdates = await getStorage('isShowUpdates', true);
+    if (isShowUpdates === true || isShowUpdates === 'true') {
+      chrome.tabs.create({url: RELEASES_URL});
+    }
   }
 
   // Open issue on uninstall
@@ -204,20 +212,20 @@ chrome.runtime.onInstalled.addListener(details => {
 });
 
 // On message update badge
-chrome.runtime.onMessage.addListener(updateBadge);
+chrome.runtime.onMessage.addListener(message => {
+  if (message && message.do === 'updatebadge') {
+    updateBadge();
+  }
+});
 
 // Handle connection status events
-function handleConnectionStatus(event) {
-  if (event.type === 'online') {
-    updateBadge();
-  } else if (event.type === 'offline') {
-    render(
-      '?',
-      [245, 159, 0, 255],
-      chrome.i18n.getMessage('actionErrorTitle'),
-    );
-  }
-}
-
-window.addEventListener('online', handleConnectionStatus);
-window.addEventListener('offline', handleConnectionStatus);
+self.addEventListener('online', () => {
+  updateBadge();
+});
+self.addEventListener('offline', () => {
+  render(
+    '?',
+    [245, 159, 0, 255],
+    chrome.i18n.getMessage('actionErrorTitle'),
+  );
+});

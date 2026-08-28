@@ -1,12 +1,10 @@
+const {rm} = require('node:fs/promises');
 const {src, dest, series} = require('gulp');
-const del = require('del');
-const zip = require('gulp-zip');
 
 const extensionName = 'F-Notifier';
 
 async function clean() {
-  await del(['build']);
-  await Promise.resolve();
+  await rm('build', {recursive: true, force: true});
 }
 
 function build() {
@@ -14,12 +12,17 @@ function build() {
     .pipe(dest('build'));
 }
 
-function dist() {
+async function dist() {
+  const {default: zip} = await import('gulp-zip');
   const manifest = require('./src/manifest.json');
   const distFileName = extensionName + '_v' + manifest.version + '.zip';
-  return src('build/**')
-    .pipe(zip(distFileName))
-    .pipe(dest('dist'));
+  await new Promise((resolve, reject) => {
+    src('build/**')
+      .pipe(zip(distFileName))
+      .pipe(dest('dist'))
+      .on('end', resolve)
+      .on('error', reject);
+  });
 }
 
 exports.clean = clean;
